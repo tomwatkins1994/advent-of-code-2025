@@ -20,8 +20,8 @@ fun getTurns(input: String): Int {
     return if (direction == "R") turns else turns * -1
 }
 
-fun getNewPosition(startingPos: Int, turns: Int): Int {
-    (startingPos + turns).let {
+fun getNewPosition(startingPos: Int, movement: String): Int {
+    (startingPos + getTurns(movement)).let {
         if (it >= 0 && it <= 99) return it
         return 100 - abs(it)
     }

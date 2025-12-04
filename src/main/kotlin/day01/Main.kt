@@ -6,9 +6,7 @@ fun main() {
     println("Hello world")
 }
 
-typealias Movement = Pair<String, Int>
-
-fun getMovement(input: String): Movement {
+fun getTurns(input: String): Int {
     val direction = input.first().toString()
     if (direction != "L" && direction != "R") {
         throw IllegalArgumentException("Invalid direction")
@@ -19,22 +17,12 @@ fun getMovement(input: String): Movement {
         it.toInt()
     }
 
-    return Pair(direction, turns)
+    return if (direction == "R") turns else turns * -1
 }
 
-fun getNewPosition(startingPos: Int, movement: Movement): Int {
-    val (direction, turns) = movement
-    if (direction == "L") {
-        (startingPos - turns).let {
-            if (it >= 0) return it
-            return 100 - abs(it)
-        }
-    } else if (direction == "R") {
-        (startingPos + turns).let {
-            if (it <= 99) return it
-            return abs(it) - 100
-        }
+fun getNewPosition(startingPos: Int, turns: Int): Int {
+    (startingPos + turns).let {
+        if (it >= 0 && it <= 99) return it
+        return 100 - abs(it)
     }
-
-    throw IllegalArgumentException("Invalid movement")
 }

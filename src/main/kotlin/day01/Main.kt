@@ -1,9 +1,14 @@
 package org.example.Day01
 
+import java.io.File
 import kotlin.math.abs
 
 fun main() {
-    println("Hello world")
+    var position = 50
+    File("src/main/kotlin/day01/input.txt").forEachLine {
+        position = getNewPosition(position, it)
+        println(position)
+    }
 }
 
 fun getTurns(input: String): Int {
@@ -22,7 +27,8 @@ fun getTurns(input: String): Int {
 
 fun getNewPosition(startingPos: Int, movement: String): Int {
     (startingPos + getTurns(movement)).let {
-        if (it >= 0 && it <= 99) return it
-        return 100 - abs(it)
+        if (it < 0) return 100 - abs(it)
+        if (it >= 100) return it - 100
+        return it
     }
 }

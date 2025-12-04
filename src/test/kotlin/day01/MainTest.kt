@@ -49,14 +49,14 @@ class MainTest {
     inner class GetNewPositionTest {
         @Test
         fun `handles left movement going below 0`() {
-            val result = getNewPosition(0, "L1")
-            result shouldBe 99
+            val result = getNewPosition(0, "L10")
+            result shouldBe 90
         }
 
         @Test
         fun `gets right movement going over 100`() {
-            val result = getNewPosition(99, "R1")
-            result shouldBe 0
+            val result = getNewPosition(99, "R10")
+            result shouldBe 9
         }
 
         @Test

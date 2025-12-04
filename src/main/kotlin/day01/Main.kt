@@ -5,10 +5,12 @@ import kotlin.math.abs
 
 fun main() {
     var position = 50
+    var numZeroes = 0
     File("src/main/kotlin/day01/input.txt").forEachLine {
         position = getNewPosition(position, it)
-        println("$it: $position")
+        if (position == 0) numZeroes++
     }
+    println("numZeroes: $numZeroes")
 }
 
 fun getTurns(input: String): Int {

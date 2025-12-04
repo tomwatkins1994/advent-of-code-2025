@@ -26,7 +26,8 @@ fun getTurns(input: String): Int {
 }
 
 fun getNewPosition(startingPos: Int, movement: String): Int {
-    (startingPos + getTurns(movement)).let {
+    val turns = getTurns(movement) % 100
+    (startingPos + turns).let {
         if (it < 0) return 100 - abs(it)
         if (it >= 100) return it - 100
         return it

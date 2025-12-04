@@ -25,13 +25,15 @@ fun getMovement(input: String): Movement {
 fun getNewPosition(startingPos: Int, movement: Movement): Int {
     val (direction, turns) = movement
     if (direction == "L") {
-        val res = startingPos - turns
-        if (res >= 0) return res
-        return 100 - abs(res)
+        (startingPos - turns).let {
+            if (it >= 0) return it
+            return 100 - abs(it)
+        }
     } else if (direction == "R") {
-        val res = startingPos + turns
-        if (res <= 99) return res
-        return abs(res) - 100
+        (startingPos + turns).let {
+            if (it <= 99) return it
+            return abs(it) - 100
+        }
     }
 
     throw IllegalArgumentException("Invalid movement")

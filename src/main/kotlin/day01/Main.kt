@@ -4,7 +4,9 @@ fun main() {
     println("Hello world")
 }
 
-fun getMovement(input: String): Pair<String, Int> {
+typealias Movement = Pair<String, Int>
+
+fun getMovement(input: String): Movement {
     val direction = input.first().toString()
     if (direction != "L" && direction != "R") {
         throw IllegalArgumentException("Invalid direction")

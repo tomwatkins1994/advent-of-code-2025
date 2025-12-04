@@ -29,10 +29,12 @@ fun getTurns(input: String): Int {
 }
 
 fun getNumZeroes(startingPos: Int, movement: String): Pair<Int, Int> {
-    val turns = getTurns(movement) % 100
+    val totalTurns = getTurns(movement)
+    val turns = totalTurns % 100
+    val numZeroes = abs((totalTurns - turns) / 100)
     (startingPos + turns).let {
-        if (it < 0) return Pair(1, 100 - abs(it))
-        if (it >= 100) return Pair(1, it - 100)
-        return Pair(0, it)
+        if (it < 0) return Pair(numZeroes + 1, 100 - abs(it))
+        if (it >= 100) return Pair(numZeroes + 1, it - 100)
+        return Pair(numZeroes, it)
     }
 }

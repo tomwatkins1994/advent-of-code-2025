@@ -6,19 +6,12 @@ import kotlin.math.abs
 fun main() {
     var position = 50
     var numZeroes = 0
-    var finishedZeroes = 0
     File("src/main/kotlin/day01/input.txt").forEachLine {
-        val start = position
         val res = getNumZeroes(position, it)
-//        if (numZeroes + res.first > numZeroes) {
-//            println("$it: ${res.second} (Start: $start) (${numZeroes + res.first})")
-//        }
         numZeroes += res.first
         position = res.second
-        if (res.second == 0) finishedZeroes++
-        //println("$it: $position ($numZeroes)")
     }
-    println("numZeroes: $numZeroes ($finishedZeroes)")
+    println("numZeroes: $numZeroes")
 }
 
 fun getTurns(input: String): Int {

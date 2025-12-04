@@ -29,9 +29,15 @@ class MainTest {
         }
 
         @Test
-        fun `handles 3 digits`() {
+        fun `should ignore complete left turns`() {
+            val result = getTurns("L123")
+            result shouldBe -23
+        }
+
+        @Test
+        fun `should ignore complete right turns`() {
             val result = getTurns("R123")
-            result shouldBe 123
+            result shouldBe 23
         }
 
         @Test

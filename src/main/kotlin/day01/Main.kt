@@ -21,14 +21,14 @@ fun getTurns(input: String): Int {
 
     val turns = input.drop(1).let {
         if (it.isEmpty()) throw IllegalArgumentException("Invalid turns")
-        it.toInt()
+        it.toInt() % 100 // Ignore complete turns
     }
 
     return if (direction == "R") turns else turns * -1
 }
 
 fun getNewPosition(startingPos: Int, movement: String): Int {
-    val turns = getTurns(movement) % 100
+    val turns = getTurns(movement)
     (startingPos + turns).let {
         if (it < 0) return 100 - abs(it)
         if (it >= 100) return it - 100

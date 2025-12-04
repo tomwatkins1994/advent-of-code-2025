@@ -39,9 +39,6 @@ fun getNumZeroes(startingPos: Int, movement: String): Pair<Int, Int> {
     val totalTurns = getTurns(movement)
     val turns = totalTurns % 100
     var numZeroes = abs(totalTurns.div(100))
-    if (turns == 0) {
-        return Pair(numZeroes, startingPos)
-    }
     (startingPos + turns).let {
         if ((it <= 0 || it > 99) && startingPos != 0) numZeroes++
         if (it < 0) return Pair(numZeroes, 100 - abs(it))

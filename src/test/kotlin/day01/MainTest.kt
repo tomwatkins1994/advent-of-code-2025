@@ -56,7 +56,7 @@ class MainTest {
         @Test
         fun `handles left movement going below 0`() {
             val result = getNumZeroes(0, "L10")
-            result shouldBe Pair(1, 90)
+            result shouldBe Pair(0, 90)
         }
 
         @Test

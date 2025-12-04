@@ -37,11 +37,11 @@ class MainTest {
         }
 
         @Test
-        fun `should error if invalid movement`() {
+        fun `should error if invalid turns`() {
             val exception = shouldThrow<IllegalArgumentException> {
                 getMovement("L")
             }
-            exception.message shouldBe "Invalid movement"
+            exception.message shouldBe "Invalid turns"
         }
     }
 

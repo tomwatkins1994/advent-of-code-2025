@@ -7,7 +7,7 @@ fun main() {
     var position = 50
     File("src/main/kotlin/day01/input.txt").forEachLine {
         position = getNewPosition(position, it)
-        println(position)
+        println("$it: $position")
     }
 }
 

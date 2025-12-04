@@ -29,6 +29,12 @@ class MainTest {
         }
 
         @Test
+        fun `handles 3 digits`() {
+            val result = getTurns("R123")
+            result shouldBe 123
+        }
+
+        @Test
         fun `should error if invalid direction`() {
             val exception = shouldThrow<IllegalArgumentException> {
                 getTurns("U12")
@@ -68,6 +74,18 @@ class MainTest {
         @Test
         fun `handles right movement not going above or below 0`() {
             val result = getNewPosition(50, "R1")
+            result shouldBe 51
+        }
+
+        @Test
+        fun `handles 3 digit left movement`() {
+            val result = getNewPosition(50, "L201")
+            result shouldBe 49
+        }
+
+        @Test
+        fun `handles 3 digit right movement`() {
+            val result = getNewPosition(50, "R201")
             result shouldBe 51
         }
     }

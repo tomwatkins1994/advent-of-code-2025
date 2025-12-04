@@ -60,7 +60,7 @@ class MainTest {
         }
 
         @Test
-        fun `gets right movement going over 100`() {
+        fun `gets right movement going over 99`() {
             val result = getNumZeroes(99, "R10")
             result shouldBe Pair(1, 9)
         }
@@ -87,6 +87,24 @@ class MainTest {
         fun `handles 3 digit right movement`() {
             val result = getNumZeroes(50, "R201")
             result shouldBe Pair(2, 51)
+        }
+
+        @Test
+        fun `handles a complete turn from 0`() {
+            val result = getNumZeroes(0, "R100")
+            result shouldBe Pair(1, 0)
+        }
+
+        @Test
+        fun `handles landing on 0 with less that 100 clicks left`() {
+            val result = getNumZeroes(1, "L1")
+            result shouldBe Pair(1, 0)
+        }
+
+        @Test
+        fun `handles landing on 0 with less that 100 clicks right`() {
+            val result = getNumZeroes(99, "R1")
+            result shouldBe Pair(1, 0)
         }
     }
 }

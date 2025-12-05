@@ -15,12 +15,6 @@ fun parseIdRange(idRange: String): Pair<Long, Long> {
 
 fun validateId(id: Long): Boolean {
     val idString = id.toString()
-
-    // If the ID is an odd number of digits we can assume it will always be valid
-    if (idString.length % 2 > 0) {
-        return true
-    }
-
     val numbersInHalf = idString.length / 2
     val firstHalf = idString.substring(0, numbersInHalf)
     val secondHalf = idString.substring(numbersInHalf)

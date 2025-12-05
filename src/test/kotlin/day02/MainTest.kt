@@ -18,12 +18,6 @@ class MainTest {
     @Nested
     inner class ValidateIdTest {
         @Test
-        fun `IDs with an odd number should always be valid`() {
-            val result = validateId(111)
-            result shouldBe true
-        }
-
-        @Test
         fun `2 digit non repeated value should be valid`() {
             val result = validateId(12)
             result shouldBe true
@@ -34,6 +28,13 @@ class MainTest {
             val result = validateId(11)
             result shouldBe false
         }
+
+        @Test
+        fun `3 digit non repeated value should be valid`() {
+            val result = validateId(123)
+            result shouldBe true
+        }
+
 
         @Test
         fun `4 digit repeated value should be invalid`() {
@@ -56,6 +57,12 @@ class MainTest {
         @Test
         fun `sequence repeated 4 times should be invalid`() {
             val result = validateId(123123123123)
+            result shouldBe false
+        }
+
+        @Test
+        fun `sequence repeated 5 times should be invalid`() {
+            val result = validateId(123123123123123)
             result shouldBe false
         }
     }

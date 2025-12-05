@@ -34,7 +34,7 @@ class MainTest {
             val result = validateId(100)
             result shouldBe true
         }
-        
+
         @Test
         fun `4 digit repeated value should be invalid`() {
             val result = validateId(1212)
@@ -63,6 +63,12 @@ class MainTest {
         fun `sequence repeated 5 times should be invalid`() {
             val result = validateId(123123123123123)
             result shouldBe false
+        }
+
+        @Test
+        fun `sequence with repeated values until past half way but not fully should be valid`() {
+            val result = validateId(2121212118)
+            result shouldBe true
         }
     }
 

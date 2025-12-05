@@ -11,7 +11,6 @@ fun main() {
     println("Combination: $combination")
 }
 
-
 fun getNumZeroes(startingPos: Int, movement: String): Pair<Int, Int> {
     val totalTurns = getTurns(movement)
     var numZeroes = abs(totalTurns.div(100))

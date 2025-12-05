@@ -22,6 +22,9 @@ fun validateId(id: Long): Boolean {
         while (scannedDigits <= idString.length && scannedDigits + i <= idString.length) {
             val currentChunk = idString.substring(scannedDigits, scannedDigits + i)
             matchingPattern = compareToChunk == currentChunk
+            if (!matchingPattern && compareToChunk != "") {
+                break
+            }
             compareToChunk = currentChunk
             scannedDigits += i
         }
@@ -38,6 +41,7 @@ fun sumOfInvalidIdRanges(idRanges: String): Long {
             .map { idRange ->
                 for (id in idRange.first..idRange.second) {
                     id.takeIf { !validateId(it) }?.let { add(it) }
+                    if (!validateId(id)) println("$id - ${validateId(id)}")
                 }
             }
     }

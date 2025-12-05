@@ -31,11 +31,10 @@ class MainTest {
 
         @Test
         fun `3 digit non repeated value should be valid`() {
-            val result = validateId(123)
+            val result = validateId(100)
             result shouldBe true
         }
-
-
+        
         @Test
         fun `4 digit repeated value should be invalid`() {
             val result = validateId(1212)

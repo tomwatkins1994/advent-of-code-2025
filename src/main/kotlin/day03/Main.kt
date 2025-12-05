@@ -11,7 +11,7 @@ fun getTotalJoltage(banks: List<String>): Int {
 fun getMaximumJoltage(bank: String): Int {
     var firstJoltage = 0
     var firstIndex = 0
-    bank.forEachIndexed { index, joltage ->
+    bank.substring(0, bank.length - 1).forEachIndexed { index, joltage ->
         val joltageValue = joltage.toString().toInt()
         if (joltageValue > firstJoltage) {
             firstJoltage = joltageValue

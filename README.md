@@ -11,3 +11,8 @@
       I could keep track of the current position and number of zeroes in the state for the `Safe` class
     * I also think that because I no longer had to test the number of zeroes being returned (I am just telling my class
       to turn the dial now) it felt less like I was testing implementation detail for the combination.
+
+## Day 02
+
+* **Part 1** - Simple enough - started with a functional approach, hoping this wouldn't bite me like it did day 1. Not
+  going for `Long` over `Int` from the get go was a surprising oversight

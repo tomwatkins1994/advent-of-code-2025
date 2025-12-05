@@ -22,4 +22,5 @@
       be divisible evenly by the chunk size
     * I figured there was an optimisation to reduce the for loop from the IDs length to maybe half the length, but I
       resisted this until I had fully passing tests
-    * After getting the tests all passing and the correct answer I managed to simplify the while loop significantly
+    * After getting the tests all passing and the correct answer I managed to simplify the while loop significantly - a
+      strong example of why TDD is really useful here - the R/G refactor cycle made this really easy

@@ -1,7 +1,6 @@
 package day01
 
 import io.kotest.matchers.shouldBe
-import org.example.Day01.getNumZeroes
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -13,8 +12,49 @@ class OOPRefactorTest {
             val safe = Safe(50)
             val rotations = listOf("L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82")
             rotations.forEach { safe.turnDial(it) }
-            val combination = safe.getCombination()
-            combination shouldBe 6
+            safe.getCombination() shouldBe 6
+        }
+
+        @Test
+        fun `combination should be 1 after landing on 0`() {
+            val safe = Safe(1)
+            safe.turnDial("L1")
+            safe.getCombination() shouldBe 1
+        }
+
+        @Test
+        fun `combination should be 1 going left past 0`() {
+            val safe = Safe(1)
+            safe.turnDial("L2")
+            safe.getCombination() shouldBe 1
+        }
+
+        @Test
+        fun `combination should be 1 going right past 0`() {
+            val safe = Safe(99)
+            safe.turnDial("R2")
+            safe.getCombination() shouldBe 1
+        }
+
+        @Test
+        fun `combination should be 2 for 2 complete turns`() {
+            val safe = Safe(1)
+            safe.turnDial("R201")
+            safe.getCombination() shouldBe 2
+        }
+
+        @Test
+        fun `handle edge case going left starting from 0`() {
+            val safe = Safe(0)
+            safe.turnDial("L1")
+            safe.getCombination() shouldBe 0
+        }
+
+        @Test
+        fun `handle edge case going right starting from 0`() {
+            val safe = Safe(0)
+            safe.turnDial("R1")
+            safe.getCombination() shouldBe 0
         }
     }
 
@@ -25,7 +65,6 @@ class OOPRefactorTest {
             val safe = Safe(0)
             safe.turnDial("L10")
             safe.currentPosition shouldBe 90
-            //Pair(0, 90)
         }
 
         @Test
@@ -33,8 +72,6 @@ class OOPRefactorTest {
             val safe = Safe(99)
             safe.turnDial("R10")
             safe.currentPosition shouldBe 9
-            val result = getNumZeroes(99, "R10")
-//            result shouldBe Pair(1, 9)
         }
 
         @Test
@@ -56,7 +93,6 @@ class OOPRefactorTest {
             val safe = Safe(50)
             safe.turnDial("L201")
             safe.currentPosition shouldBe 49
-//            result shouldBe Pair(2, 49)
         }
 
         @Test
@@ -64,7 +100,6 @@ class OOPRefactorTest {
             val safe = Safe(50)
             safe.turnDial("R201")
             safe.currentPosition shouldBe 51
-//            result shouldBe Pair(2, 51)
         }
 
         @Test
@@ -72,7 +107,6 @@ class OOPRefactorTest {
             val safe = Safe(0)
             safe.turnDial("R100")
             safe.currentPosition shouldBe 0
-//            result shouldBe Pair(1, 0)
         }
 
         @Test
@@ -80,7 +114,6 @@ class OOPRefactorTest {
             val safe = Safe(1)
             safe.turnDial("L1")
             safe.currentPosition shouldBe 0
-//            result shouldBe Pair(1, 0)
         }
 
         @Test
@@ -88,7 +121,6 @@ class OOPRefactorTest {
             val safe = Safe(99)
             safe.turnDial("R1")
             safe.currentPosition shouldBe 0
-//            result shouldBe Pair(1, 0)
         }
     }
 }

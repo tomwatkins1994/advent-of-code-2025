@@ -19,21 +19,16 @@ fun validateId(id: Long): Boolean {
         var scannedDigits = 0
         var compareToChunk = ""
         var matchingPattern = false
-        while (scannedDigits < idString.length && scannedDigits + i < idString.length) {
+        while (scannedDigits <= idString.length && scannedDigits + i <= idString.length) {
             val currentChunk = idString.substring(scannedDigits, scannedDigits + i)
             matchingPattern = compareToChunk == currentChunk
             compareToChunk = currentChunk
             scannedDigits += i
         }
-        if (matchingPattern) return true
+        if (matchingPattern) return false
     }
 
-    return false
-//    val idString = id.toString()
-//    val numbersInHalf = idString.length / 2
-//    val firstHalf = idString.substring(0, numbersInHalf)
-//    val secondHalf = idString.substring(numbersInHalf)
-//    return firstHalf != secondHalf
+    return true
 }
 
 fun sumOfInvalidIdRanges(idRanges: String): Long {

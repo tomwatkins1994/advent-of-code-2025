@@ -16,7 +16,7 @@ class MainTest {
                 "818181911112111"
             )
             val totalJoltage = getTotalJoltage(banks)
-            totalJoltage shouldBe 357
+            totalJoltage shouldBe 3121910778619
         }
     }
 
@@ -25,25 +25,25 @@ class MainTest {
         @Test
         fun `a bank with all values the same works`() {
             val maxJoltage = getMaximumJoltage("111111111111111")
-            maxJoltage shouldBe 11
+            maxJoltage shouldBe 111111111111
         }
 
         @Test
         fun `a bank with 2 distinct values works`() {
             val maxJoltage = getMaximumJoltage("811111111111111")
-            maxJoltage shouldBe 81
+            maxJoltage shouldBe 811111111111
         }
 
         @Test
         fun `a bank with 3 distinct values works`() {
             val maxJoltage = getMaximumJoltage("891111111111111")
-            maxJoltage shouldBe 91
+            maxJoltage shouldBe 911111111111
         }
 
         @Test
         fun `a bank where the highest number is the last one works`() {
             val maxJoltage = getMaximumJoltage("811111111111119")
-            maxJoltage shouldBe 89
+            maxJoltage shouldBe 811111111119
         }
     }
 }

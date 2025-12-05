@@ -32,3 +32,7 @@
 
 * **Part 1** - Probably the easiest 1 yet - was tempted to try and refactor some of the repeated code but seemed
   premature before seeing pt 2
+* **Part 2** - Definitely the easiest part 2 so far
+    * My instinct to avoid the refactor was good, I am not sure I would have ended up at the same place I ended up at by
+      the end
+    * Wasn't a huge amount of obvious refactoring after getting the answer due to the simplicity of the solution

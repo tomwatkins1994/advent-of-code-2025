@@ -1,12 +1,19 @@
 package day02
 
-fun parseIdRange(idRange: String): Pair<Int, Int> {
+import java.io.File
+
+fun main() {
+    val result = sumOfInvalidIdRanges(File("src/main/kotlin/day02/input.txt").readText())
+    println("Result: $result")
+}
+
+fun parseIdRange(idRange: String): Pair<Long, Long> {
     return idRange.split("-").let {
-        Pair(it[0].toInt(), it[1].toInt())
+        Pair(it[0].toLong(), it[1].toLong())
     }
 }
 
-fun validateId(id: Int): Boolean {
+fun validateId(id: Long): Boolean {
     val idString = id.toString()
 
     // If the ID is an odd number of digits we can assume it will always be valid
@@ -20,7 +27,7 @@ fun validateId(id: Int): Boolean {
     return firstHalf != secondHalf
 }
 
-fun sumOfInvalidIdRanges(idRanges: String): Int {
+fun sumOfInvalidIdRanges(idRanges: String): Long {
     val validIds = buildList {
         idRanges.split(",")
             .map { parseIdRange(it) }

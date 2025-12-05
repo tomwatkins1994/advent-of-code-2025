@@ -18,4 +18,6 @@
   going for `Long` over `Int` from the get-go was a surprising oversight
 * **Part 2** - Tricky to get the logic adjusted but existing tests made it easy to build upon.
     * I wasn't too happy having a `while` within a `for` loop for time complexity reasons but not sure on a great
-      alternative.
+      alternative
+    * I figured there was an optimisation to reduce the for loop from the IDs length to maybe half the length, but I
+      resisted this until I had fully passing tests

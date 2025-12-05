@@ -16,7 +16,7 @@ class MainTest {
                 "818181911112111"
             )
             val totalJoltage = getTotalJoltage(banks)
-            totalJoltage shouldBe 357
+            totalJoltage shouldBe 3121910778619
         }
     }
 

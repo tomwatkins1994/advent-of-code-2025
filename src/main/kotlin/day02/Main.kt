@@ -25,8 +25,8 @@ fun validateId(id: Long): Boolean {
             if (!matchingPattern && scannedDigits > 0) {
                 break
             }
-            currentChunk = nextChunk
             scannedDigits += chunkSize
+            currentChunk = nextChunk
             if (scannedDigits < idString.length && scannedDigits + chunkSize > idString.length) {
                 matchingPattern = false
             }

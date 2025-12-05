@@ -15,4 +15,7 @@
 ## Day 02
 
 * **Part 1** - Simple enough - started with a functional approach, hoping this wouldn't bite me like it did day 1. Not
-  going for `Long` over `Int` from the get go was a surprising oversight
+  going for `Long` over `Int` from the get-go was a surprising oversight
+* **Part 2** - Tricky to get the logic adjusted but existing tests made it easy to build upon.
+    * I wasn't too happy having a `while` within a `for` loop for time complexity reasons but not sure on a great
+      alternative.

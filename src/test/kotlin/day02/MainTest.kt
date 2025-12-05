@@ -28,5 +28,23 @@ class MainTest {
             val result = validateId("12")
             result shouldBe true
         }
+
+        @Test
+        fun `2 digit repeated value should be invalid`() {
+            val result = validateId("11")
+            result shouldBe false
+        }
+
+        @Test
+        fun `4 digit repeated value should be invalid`() {
+            val result = validateId("1212")
+            result shouldBe false
+        }
+
+        @Test
+        fun `4 digit non-repeated value should be invalid`() {
+            val result = validateId("1213")
+            result shouldBe true
+        }
     }
 }

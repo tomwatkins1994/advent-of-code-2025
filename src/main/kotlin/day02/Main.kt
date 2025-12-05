@@ -17,15 +17,15 @@ fun validateId(id: Long): Boolean {
     val idString = id.toString()
     for (chunkSize in 1..idString.length) {
         var scannedDigits = 0
-        var compareToChunk = ""
+        var currentChunk = ""
         var matchingPattern = false
         while (scannedDigits <= idString.length && scannedDigits + chunkSize <= idString.length) {
-            val currentChunk = idString.substring(scannedDigits, scannedDigits + chunkSize)
-            matchingPattern = compareToChunk == currentChunk
-            if (!matchingPattern && compareToChunk != "") {
+            val nextChunk = idString.substring(scannedDigits, scannedDigits + chunkSize)
+            matchingPattern = nextChunk == currentChunk
+            if (!matchingPattern && scannedDigits > 0) {
                 break
             }
-            compareToChunk = currentChunk
+            currentChunk = nextChunk
             scannedDigits += chunkSize
             if (scannedDigits < idString.length && scannedDigits + chunkSize > idString.length) {
                 matchingPattern = false

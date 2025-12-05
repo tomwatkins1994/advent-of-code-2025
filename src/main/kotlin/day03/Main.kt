@@ -1,7 +1,10 @@
 package day03
 
-fun main() {
+import java.io.File
 
+fun main() {
+    val result = File("src/main/kotlin/day03/input.txt").useLines { getTotalJoltage(it.toList()) }
+    println("Total Joltage: $result")
 }
 
 fun getTotalJoltage(banks: List<String>): Int {

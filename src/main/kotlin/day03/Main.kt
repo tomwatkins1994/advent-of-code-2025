@@ -13,20 +13,22 @@ fun getTotalJoltage(banks: List<String>): Long {
 
 fun getMaximumJoltage(bank: String): Long {
     var maxJoltage = ""
-    var remaining = bank
+    var remainingBatteries = bank
 
     for (i in 1..12) {
         var currentJoltage = 0
         var nextIndex = 0
-        remaining.let { it.substring(0, it.length - (12 - i)) }.forEachIndexed { index, joltage ->
-            val joltageValue = joltage.toString().toInt()
-            if (joltageValue > currentJoltage) {
-                currentJoltage = joltageValue
-                nextIndex = index + 1
+        remainingBatteries
+            .substring(0, remainingBatteries.length - (12 - i))
+            .map { it.toString().toInt() }
+            .forEachIndexed { index, joltage ->
+                if (joltage > currentJoltage) {
+                    currentJoltage = joltage
+                    nextIndex = index + 1
+                }
             }
-        }
         maxJoltage += currentJoltage.toString()
-        remaining = remaining.substring(nextIndex)
+        remainingBatteries = remainingBatteries.substring(nextIndex)
     }
 
     return maxJoltage.toLong()

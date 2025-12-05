@@ -27,3 +27,8 @@
       strong example of why TDD is really useful here - the R/G refactor cycle made this really easy
     * In the end, once the inner loop had been simplified it became clear that a `for` loop actually was a clearer way
       to go than a `while` loop
+
+## Day 03
+
+* **Part 1** - Probably the easiest 1 yet - was tempted to try and refactor some of the repeated code but seemed
+  premature before seeing pt 2

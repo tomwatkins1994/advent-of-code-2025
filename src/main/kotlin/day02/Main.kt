@@ -1,18 +1,22 @@
 package day02
 
-fun parseIdRange(idRange: String): Pair<String, String> {
-    return idRange.split("-").let { Pair(it[0], it[1]) }
+fun parseIdRange(idRange: String): Pair<Int, Int> {
+    return idRange.split("-").let {
+        Pair(it[0].toInt(), it[1].toInt())
+    }
 }
 
-fun validateId(id: String): Boolean {
+fun validateId(id: Int): Boolean {
+    val idString = id.toString()
+
     // If the ID is an odd number of digits we can assume it will always be valid
-    if (id.length % 2 > 0) {
+    if (idString.length % 2 > 0) {
         return true
     }
 
-    val numbersInHalf = id.length / 2
-    val firstHalf = id.substring(0, numbersInHalf)
-    val secondHalf = id.substring(numbersInHalf)
+    val numbersInHalf = idString.length / 2
+    val firstHalf = idString.substring(0, numbersInHalf)
+    val secondHalf = idString.substring(numbersInHalf)
     return firstHalf != secondHalf
 }
 
@@ -21,8 +25,8 @@ fun sumOfInvalidIdRanges(idRanges: String): Int {
         idRanges.split(",")
             .map { parseIdRange(it) }
             .map { idRange ->
-                for (id in idRange.first.toInt()..idRange.second.toInt()) {
-                    id.takeIf { !validateId(it.toString()) }?.let { add(it) }
+                for (id in idRange.first..idRange.second) {
+                    id.takeIf { !validateId(it) }?.let { add(it) }
                 }
             }
     }

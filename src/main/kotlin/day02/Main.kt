@@ -15,3 +15,17 @@ fun validateId(id: String): Boolean {
     val secondHalf = id.substring(numbersInHalf)
     return firstHalf != secondHalf
 }
+
+fun sumOfInvalidIdRanges(idRanges: String): Int {
+    val validIds = buildList {
+        idRanges.split(",")
+            .map { parseIdRange(it) }
+            .map { idRange ->
+                for (id in idRange.first.toInt()..idRange.second.toInt()) {
+                    id.takeIf { !validateId(it.toString()) }?.let { add(it) }
+                }
+            }
+    }
+
+    return validIds.sum()
+}

@@ -31,12 +31,12 @@ class Safe {
         val completeTurns = abs(totalTurns.div(100))
         this.numZeroes += completeTurns
         val turns = totalTurns % 100
-        (this.currentPosition + turns).let {
-            if ((it <= 0 || it > 99) && this.currentPosition != 0) numZeroes++
+        (this.currentPosition + turns).let { newPosition ->
+            if ((newPosition <= 0 || newPosition > 99) && this.currentPosition != 0) numZeroes++
             this.currentPosition = when {
-                it < 0 -> 100 - abs(it)
-                it > 99 -> it - 100
-                else -> it
+                newPosition < 0 -> 100 - abs(newPosition)
+                newPosition > 99 -> newPosition - 100
+                else -> newPosition
             }
         }
     }

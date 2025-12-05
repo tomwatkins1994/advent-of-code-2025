@@ -15,10 +15,25 @@ fun parseIdRange(idRange: String): Pair<Long, Long> {
 
 fun validateId(id: Long): Boolean {
     val idString = id.toString()
-    val numbersInHalf = idString.length / 2
-    val firstHalf = idString.substring(0, numbersInHalf)
-    val secondHalf = idString.substring(numbersInHalf)
-    return firstHalf != secondHalf
+    for (i in 1..idString.length) {
+        var scannedDigits = 0
+        var compareToChunk = ""
+        var matchingPattern = false
+        while (scannedDigits < idString.length && scannedDigits + i < idString.length) {
+            val currentChunk = idString.substring(scannedDigits, scannedDigits + i)
+            matchingPattern = compareToChunk == currentChunk
+            compareToChunk = currentChunk
+            scannedDigits += i
+        }
+        if (matchingPattern) return true
+    }
+
+    return false
+//    val idString = id.toString()
+//    val numbersInHalf = idString.length / 2
+//    val firstHalf = idString.substring(0, numbersInHalf)
+//    val secondHalf = idString.substring(numbersInHalf)
+//    return firstHalf != secondHalf
 }
 
 fun sumOfInvalidIdRanges(idRanges: String): Long {

@@ -33,5 +33,11 @@ class MainTest {
             val maxJoltage = getMaximumJoltage("811111111111111")
             maxJoltage shouldBe 81
         }
+
+        @Test
+        fun `a bank with 3 distinct values works`() {
+            val maxJoltage = getMaximumJoltage("811111111111119")
+            maxJoltage shouldBe 89
+        }
     }
 }

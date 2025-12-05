@@ -15,10 +15,17 @@ fun getMaximumJoltage(bank: String): Int {
         val joltageValue = joltage.toString().toInt()
         if (joltageValue > firstJoltage) {
             firstJoltage = joltageValue
+            firstIndex = index
         }
     }
 
-    var secondJoltage = 1
+    var secondJoltage = 0
+    bank.substring(firstIndex + 1).forEachIndexed { index, joltage ->
+        val joltageValue = joltage.toString().toInt()
+        if (joltageValue > secondJoltage) {
+            secondJoltage = joltageValue
+        }
+    }
 
     return "$firstJoltage$secondJoltage".toInt()
 }

@@ -46,6 +46,18 @@ class MainTest {
             val result = validateId(1213)
             result shouldBe true
         }
+
+        @Test
+        fun `sequence repeated 3 times should be invalid`() {
+            val result = validateId(123123123)
+            result shouldBe false
+        }
+
+        @Test
+        fun `sequence repeated 4 times should be invalid`() {
+            val result = validateId(123123123123)
+            result shouldBe false
+        }
     }
 
     @Nested

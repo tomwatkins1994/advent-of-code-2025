@@ -13,7 +13,5 @@ fun validateId(id: String): Boolean {
     val numbersInHalf = id.length / 2
     val firstHalf = id.substring(0, numbersInHalf)
     val secondHalf = id.substring(numbersInHalf)
-    if (firstHalf != secondHalf) return true
-
-    return false
+    return firstHalf != secondHalf
 }

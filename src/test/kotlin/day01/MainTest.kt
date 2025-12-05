@@ -2,6 +2,7 @@ package day01
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
+import org.example.Day01.getCombination
 import org.example.Day01.getNumZeroes
 import org.example.Day01.getTurns
 import org.junit.jupiter.api.Nested
@@ -105,6 +106,16 @@ class MainTest {
         fun `handles landing on 0 with less that 100 clicks right`() {
             val result = getNumZeroes(99, "R1")
             result shouldBe Pair(1, 0)
+        }
+    }
+
+    @Nested
+    inner class GetCombinationTest {
+        @Test
+        fun `acceptance test against known input and output`() {
+            val rotations = listOf("L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82")
+            val combination = getCombination(50, rotations)
+            combination shouldBe 6
         }
     }
 }

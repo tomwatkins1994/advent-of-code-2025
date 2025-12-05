@@ -4,14 +4,10 @@ import java.io.File
 import kotlin.math.abs
 
 fun main() {
-    var position = 50
-    var numZeroes = 0
-    File("src/main/kotlin/day01/input.txt").forEachLine {
-        val res = getNumZeroes(position, it)
-        numZeroes += res.first
-        position = res.second
+    val combination = File("src/main/kotlin/day01/input.txt").useLines {
+        getCombination(50, it.toList())
     }
-    println("numZeroes: $numZeroes")
+    println("Combination: $combination")
 }
 
 fun getTurns(input: String): Int {
@@ -38,4 +34,15 @@ fun getNumZeroes(startingPos: Int, movement: String): Pair<Int, Int> {
         if (it > 99) return Pair(numZeroes, it - 100)
         return Pair(numZeroes, it)
     }
+}
+
+fun getCombination(startingPos: Int, rotations: List<String>): Int {
+    var numZeroes = 0
+    var position = startingPos
+    rotations.forEach {
+        val res = getNumZeroes(position, it)
+        numZeroes += res.first
+        position = res.second
+    }
+    return numZeroes
 }

@@ -19,16 +19,14 @@ fun validateId(id: Long): Boolean {
         if (idString.length % chunkSize > 0) {
             continue
         }
-        var scannedDigits = 0
         var currentChunk = ""
         var matchingPattern = false
-        while (scannedDigits < idString.length) {
-            val nextChunk = idString.substring(scannedDigits, scannedDigits + chunkSize)
+        for (position in 0..idString.length - 1 step chunkSize) {
+            val nextChunk = idString.substring(position, position + chunkSize)
             matchingPattern = nextChunk == currentChunk
-            if (!matchingPattern && scannedDigits > 0) {
+            if (!matchingPattern && position > 0) {
                 break
             }
-            scannedDigits += chunkSize
             currentChunk = nextChunk
         }
         if (matchingPattern) return false

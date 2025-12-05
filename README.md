@@ -24,3 +24,5 @@
       resisted this until I had fully passing tests
     * After getting the tests all passing and the correct answer I managed to simplify the while loop significantly - a
       strong example of why TDD is really useful here - the R/G refactor cycle made this really easy
+    * In the end, once the while loop had been simplified it became clear that a `for` loop actually was a clearer way
+      to go

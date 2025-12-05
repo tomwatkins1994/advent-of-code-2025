@@ -7,11 +7,11 @@ fun main() {
     println("Total Joltage: $result")
 }
 
-fun getTotalJoltage(banks: List<String>): Int {
+fun getTotalJoltage(banks: List<String>): Long {
     return banks.sumOf { getMaximumJoltage(it) }
 }
 
-fun getMaximumJoltage(bank: String): Int {
+fun getMaximumJoltage(bank: String): Long {
     var firstJoltage = 0
     var firstIndex = 0
     bank.substring(0, bank.length - 1).forEachIndexed { index, joltage ->
@@ -30,5 +30,5 @@ fun getMaximumJoltage(bank: String): Int {
         }
     }
 
-    return "$firstJoltage$secondJoltage".toInt()
+    return "$firstJoltage$secondJoltage".toLong()
 }

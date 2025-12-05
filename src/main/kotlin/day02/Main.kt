@@ -22,7 +22,7 @@ fun validateId(id: Long): Boolean {
         var scannedDigits = 0
         var currentChunk = ""
         var matchingPattern = false
-        while (scannedDigits <= idString.length && scannedDigits + chunkSize <= idString.length) {
+        while (scannedDigits < idString.length) {
             val nextChunk = idString.substring(scannedDigits, scannedDigits + chunkSize)
             matchingPattern = nextChunk == currentChunk
             if (!matchingPattern && scannedDigits > 0) {

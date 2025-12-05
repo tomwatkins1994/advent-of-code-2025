@@ -19,13 +19,13 @@ class MainTest {
     inner class ValidateIdTest {
         @Test
         fun `IDs with an odd number should always be valid`() {
-            val result = validateId(111)
+            val result = validateId("111")
             result shouldBe true
         }
 
         @Test
         fun `2 digit non repeated value should be valid`() {
-            val result = validateId(12)
+            val result = validateId("12")
             result shouldBe true
         }
     }

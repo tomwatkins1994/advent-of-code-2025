@@ -74,7 +74,7 @@ class MainTest {
             val rows = listOf(
                 "..@@.@@@@."
             )
-            val rollsToRemove = listOf(Pair(0, 2))
+            val rollsToRemove = listOf(Position(0, 2))
             val newRows = markRollsRemoved(rows, rollsToRemove)
             newRows shouldBe listOf(
                 "..x@.@@@@."
@@ -86,7 +86,7 @@ class MainTest {
             val rows = listOf(
                 "..@@.@@@@."
             )
-            val rollsToRemove = listOf(Pair(0, 2), Pair(0, 3))
+            val rollsToRemove = listOf(Position(0, 2), Position(0, 3))
             val newRows = markRollsRemoved(rows, rollsToRemove)
             newRows shouldBe listOf(
                 "..xx.@@@@."
@@ -99,7 +99,7 @@ class MainTest {
                 "..@@.@@@@.",
                 "@@@.@@@.@@",
             )
-            val rollsToRemove = listOf(Pair(0, 2), Pair(1, 5))
+            val rollsToRemove = listOf(Position(0, 2), Position(1, 5))
             val newRows = markRollsRemoved(rows, rollsToRemove)
             newRows shouldBe listOf(
                 "..x@.@@@@.",

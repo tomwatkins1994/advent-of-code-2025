@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class MainTest {
     @Nested
-    inner class GetNumberFreshIngredientsTest {
+    inner class GetFreshAndAvailableIngredientsTest {
         @Test
         fun `acceptance test based on known input and output`() {
             val input = """
@@ -24,6 +24,28 @@ class MainTest {
             """.trimIndent()
             val freshIngredients = getFreshAndAvailableIngredients(input)
             freshIngredients.size shouldBe 3
+        }
+    }
+
+    @Nested
+    inner class GetTotalFreshIngredients {
+        @Test
+        fun `acceptance test based on known input and output`() {
+            val input = """
+                3-5
+                10-14
+                16-20
+                12-18
+
+                1
+                5
+                8
+                11
+                17
+                32
+            """.trimIndent()
+            val freshIngredients = getTotalFreshIngredients(input)
+            freshIngredients.size shouldBe 14
         }
     }
 

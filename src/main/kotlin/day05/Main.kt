@@ -24,6 +24,13 @@ fun getFreshAndAvailableIngredients(input: String): Set<Long> {
     }.toSet()
 }
 
+fun getTotalFreshIngredients(input: String): Set<Long> {
+    val ingredients = parseInput(input)
+    return ingredients.available.filter { available ->
+        ingredients.fresh.any { fresh -> available >= fresh.from && available <= fresh.to }
+    }.toSet()
+}
+
 fun parseInput(input: String): Ingredients {
     val fresh = mutableListOf<IngredientRange>()
     val available = mutableSetOf<Long>()

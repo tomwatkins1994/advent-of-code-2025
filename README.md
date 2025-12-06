@@ -48,3 +48,6 @@
       as part of my solution
     * Realised quickly that replacing the rolls at the time of removing them would cause problems so left it to the end
       of the pass
+    * Refactoring was initially changing to a `for...in` loop so I could do early returns to avoid so much nesting in
+      the code
+    * I also removed the repetitive code to check for `@`

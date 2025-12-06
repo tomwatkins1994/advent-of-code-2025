@@ -8,7 +8,7 @@ fun main() {
 }
 
 fun getAccessibleRolls(rows: List<String>): Int {
-    var accessibleRolls = 0
+    var accessibleRolls: MutableList<Pair<Int, Int>> = mutableListOf()
     rows.forEachIndexed { rowIndex, row ->
         row.forEachIndexed { colIndex, value ->
             if (value.toString() == "@") {
@@ -19,9 +19,9 @@ fun getAccessibleRolls(rows: List<String>): Int {
                 val isCorner = (isTopRow || isBottomRow) && (isLeftEdge || isRightEdge)
 
                 if (isCorner) {
-                    accessibleRolls++
+                    accessibleRolls.add(Pair(rowIndex, colIndex))
                 } else if (isTopRow && isBottomRow) {
-                    accessibleRolls++
+                    accessibleRolls.add(Pair(rowIndex, colIndex))
                 } else {
                     var countAdjacent = 0
                     if (!isTopRow) {
@@ -48,12 +48,14 @@ fun getAccessibleRolls(rows: List<String>): Int {
                             if (rows[rowIndex + 1][colIndex + 1].toString() == "@") countAdjacent++
                         }
                     }
-                    if (countAdjacent < 4) accessibleRolls++
-                }
+                    if (countAdjacent < 4) {
+                        accessibleRolls.add(Pair(rowIndex, colIndex))
+                    }
 
+                }
             }
         }
     }
 
-    return accessibleRolls
+    return accessibleRolls.size
 }

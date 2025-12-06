@@ -8,7 +8,7 @@ fun main() {
 }
 
 fun getAccessibleRolls(rows: List<String>): Int {
-    var accessibleRolls: MutableList<Pair<Int, Int>> = mutableListOf()
+    val accessibleRolls: MutableList<Pair<Int, Int>> = mutableListOf()
     rows.forEachIndexed { rowIndex, row ->
         row.forEachIndexed { colIndex, value ->
             if (value.toString() == "@") {
@@ -57,7 +57,11 @@ fun getAccessibleRolls(rows: List<String>): Int {
         }
     }
 
-    return accessibleRolls.size
+    if (accessibleRolls.isNotEmpty()) {
+        return accessibleRolls.size + getAccessibleRolls(markRollsRemoved(rows, accessibleRolls))
+    }
+
+    return 0
 }
 
 fun markRollsRemoved(rows: List<String>, rollsToRemove: List<Pair<Int, Int>>): List<String> {

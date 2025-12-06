@@ -53,27 +53,19 @@ fun getTotalFreshIngredients(input: String): Long {
 fun removeIngredientRangeOverlaps(ingredientRanges: List<IngredientRange>): List<IngredientRange> {
     val newIngredientRanges = ingredientRanges.map { it.toMutable() }
     for ((index, ingredientRange) in newIngredientRanges.withIndex()) {
-        for ((compareIndex, compareIngredientRange) in newIngredientRanges.withIndex()) {
+        for ((compareIndex, compareTo) in newIngredientRanges.withIndex()) {
             if (index == compareIndex) continue
-            val fromInRange = (ingredientRange.from >= compareIngredientRange.from
-                    && ingredientRange.from <= compareIngredientRange.to
-                    )
-            val toInRange = (ingredientRange.to >= compareIngredientRange.from
-                    && ingredientRange.to <= compareIngredientRange.to)
+            val fromInRange = (ingredientRange.from >= compareTo.from
+                    && ingredientRange.from <= compareTo.to)
+            val toInRange = (ingredientRange.to >= compareTo.from
+                    && ingredientRange.to <= compareTo.to)
             if (fromInRange && toInRange) {
+                // Set these to 0 so we can ignore them
                 ingredientRange.from = 0
                 ingredientRange.to = 0
             } else {
-                if (
-                    fromInRange
-                ) {
-                    ingredientRange.from = compareIngredientRange.to + 1
-                }
-                if (
-                    toInRange
-                ) {
-                    ingredientRange.to = compareIngredientRange.from - 1
-                }
+                if (fromInRange) ingredientRange.from = compareTo.to + 1
+                if (toInRange) ingredientRange.to = compareTo.from - 1
             }
         }
     }

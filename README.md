@@ -62,7 +62,8 @@
       OOM due to the volume of data this would add.
     * Sets seemed to be a nice way to do the lookup as looking for a value in a hash map is a efficient operation and I
       could also handle inclusive ranges with no manual logic
-* **Part 2** -
+* **Part 2** - I decided not to remove my existing code here and just add a new method to get the new value, the way I
+  had put the code together made this easy enough to do
     * Immediately had to go back to thinking that my original `Set` approach was good but need to think of how to avoid
       the OOM issues as I had before
     * `Set` was still not the right approach as I quickly identified

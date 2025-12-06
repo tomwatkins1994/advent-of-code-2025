@@ -45,7 +45,7 @@ class MainTest {
                 32
             """.trimIndent()
             val freshIngredients = getTotalFreshIngredients(input)
-            freshIngredients.size shouldBe 14
+            freshIngredients shouldBe 14
         }
     }
 

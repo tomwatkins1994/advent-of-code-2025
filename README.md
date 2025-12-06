@@ -53,3 +53,23 @@
     * I also removed the repetitive code to check for `@`
     * I experimented with trying to make the list of locations a single list but this made the code needlessly complex
       just to avoid one level of nesting
+
+## Day 05
+
+* **Part 1** - Went for an overly complete solution and probably should have kept it somewhat simpler
+    * Storing every fresh ingredient in a range in a set seemed a great idea and got tests to pass but when I ran it
+      against the input I got
+      OOM due to the volume of data this would add.
+    * Sets seemed to be a nice way to do the lookup as looking for a value in a hash map is a efficient operation and I
+      could also handle inclusive ranges with no manual logic
+* **Part 2** - I decided not to remove my existing code here and just add a new method to get the new value, the way I
+  had put the code together made this easy enough to do
+    * Immediately had to go back to thinking that my original `Set` approach was good but need to think of how to avoid
+      the OOM issues as I had before
+    * `Set` was still not the right approach as I quickly identified
+    * I had a lot of logic in the `getTotalFreshIngredients`, including logic to remove overlaps. Breaking out this
+      logic made it much easier to test and work out issues
+    * All the tests (including the acceptance test) passed but the answer was wrong, not initially sure why this is
+    * It occurred to me that ranges wholly contained within another range weren't being handled - added a test case and
+      getting this to pass meant my solution was now correct
+    * Refactoring was mostly just using built-in Kotlin features to reduce code

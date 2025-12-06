@@ -19,8 +19,9 @@ data class Ingredients(
 
 fun getFreshAndAvailableIngredients(input: String): Set<Long> {
     val ingredients = parseInput(input)
-    return setOf()
-//    return ingredients.available.filter { ingredients.fresh.contains(it) }.toSet()
+    return ingredients.available.filter { available ->
+        ingredients.fresh.any { fresh -> available >= fresh.from && available <= fresh.to }
+    }.toSet()
 }
 
 fun parseInput(input: String): Ingredients {

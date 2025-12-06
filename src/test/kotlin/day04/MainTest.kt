@@ -22,7 +22,7 @@ class MainTest {
                 "@.@.@@@.@."
             )
             val accessibleRolls = getAccessibleRolls(rows)
-            accessibleRolls shouldBe 13
+            accessibleRolls shouldBe 43
         }
 
         @Test

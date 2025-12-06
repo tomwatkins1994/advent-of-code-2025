@@ -39,5 +39,12 @@
 
 ## Day 04
 
-* **Part 1** - Code produced feels ugly and repetitive but solution wasn't too difficult. Identifying that corners
-  should always be accessible early helped
+* **Part 1** - Code produced feels ugly and repetitive but solution wasn't too difficult.
+    * Identifying that corners should always be accessible early helped
+    * Didn't see the need to create the diagram with the replaced rolls as this was not needed to get the answer
+* **Part 2** - Solution seem fairly straightforward as soon as I read the task
+    * Recursion seemed the obvious way to go, although initially I wasn't sure on how to write tests for this
+    * Decided to now implement the process of replacing the rolls after using them as it felt like I would need this now
+      as part of my solution
+    * Realised quickly that replacing the rolls at the time of removing them would cause problems so left it to the end
+      of the pass

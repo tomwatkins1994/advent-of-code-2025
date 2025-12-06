@@ -36,3 +36,20 @@
     * My instinct to avoid the refactor was good, I am not sure I would have ended up at the same place I ended up at by
       the end
     * Wasn't a huge amount of obvious refactoring after getting the answer due to the simplicity of the solution
+
+## Day 04
+
+* **Part 1** - Code produced feels ugly and repetitive but solution wasn't too difficult.
+    * Identifying that corners should always be accessible early helped
+    * Didn't see the need to create the diagram with the replaced rolls as this was not needed to get the answer
+* **Part 2** - Solution seem fairly straightforward as soon as I read the task
+    * Recursion seemed the obvious way to go, although initially I wasn't sure on how to write tests for this
+    * Decided to now implement the process of replacing the rolls after using them as it felt like I would need this now
+      as part of my solution
+    * Realised quickly that replacing the rolls at the time of removing them would cause problems so left it to the end
+      of the pass
+    * Refactoring was initially changing to a `for...in` loop so I could do early returns to avoid so much nesting in
+      the code
+    * I also removed the repetitive code to check for `@`
+    * I experimented with trying to make the list of locations a single list but this made the code needlessly complex
+      just to avoid one level of nesting

@@ -67,7 +67,7 @@ fun getAccessibleRolls(rows: List<String>): Int {
 fun markRollsRemoved(rows: List<String>, rollsToRemove: List<Pair<Int, Int>>): List<String> {
     val newRows = rows.toMutableList()
     for (roll in rollsToRemove) {
-        newRows[roll.first] = rows[roll.first].replaceRange(roll.second..roll.second, "x")
+        newRows[roll.first] = newRows[roll.first].replaceRange(roll.second..roll.second, "x")
     }
     return newRows
 }

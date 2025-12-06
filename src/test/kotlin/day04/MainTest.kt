@@ -82,6 +82,18 @@ class MainTest {
         }
 
         @Test
+        fun `remove multiple rolls from the same row`() {
+            val rows = listOf(
+                "..@@.@@@@."
+            )
+            val rollsToRemove = listOf(Pair(0, 2), Pair(0, 3))
+            val newRows = markRollsRemoved(rows, rollsToRemove)
+            newRows shouldBe listOf(
+                "..xx.@@@@."
+            )
+        }
+
+        @Test
         fun `remove 2 rolls`() {
             val rows = listOf(
                 "..@@.@@@@.",

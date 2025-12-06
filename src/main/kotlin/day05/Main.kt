@@ -13,13 +13,22 @@ fun main() {
 data class IngredientRange(
     val from: Long,
     val to: Long
-)
+) {
+    fun toMutable() = MutableIngredientRange(
+        from = this.from,
+        to = this.to
+    )
+}
 
 data class MutableIngredientRange(
     var from: Long,
     var to: Long
-)
-
+) {
+    fun toImmutable() = IngredientRange(
+        from = this.from,
+        to = this.to
+    )
+}
 
 data class Ingredients(
     val fresh: List<IngredientRange>,
@@ -60,6 +69,29 @@ fun getTotalFreshIngredients(input: String): Long {
     }
 
     return totalFreshIngredients
+}
+
+fun removeIngredientRangeOverlaps(ingredientRanges: List<IngredientRange>): List<IngredientRange> {
+    val newIngredientRanges = ingredientRanges.map { it.toMutable() }
+    for ((index, ingredientRange) in newIngredientRanges.withIndex()) {
+        for ((compareIndex, compareIngredientRange) in newIngredientRanges.withIndex()) {
+            if (index == compareIndex) continue
+            if (
+                ingredientRange.from >= compareIngredientRange.from
+                && ingredientRange.from <= compareIngredientRange.to
+            ) {
+                ingredientRange.from = compareIngredientRange.to + 1
+            }
+            if (
+                ingredientRange.to >= compareIngredientRange.from
+                && ingredientRange.to <= compareIngredientRange.to
+            ) {
+                ingredientRange.to = compareIngredientRange.from - 1
+            }
+        }
+    }
+
+    return newIngredientRanges.map { it.toImmutable() }
 }
 
 fun parseInput(input: String): Ingredients {

@@ -50,6 +50,37 @@ class MainTest {
     }
 
     @Nested
+    inner class RemoveIngredientRangeOverlaps {
+        @Test
+        fun `remove overlap on 2 ranges`() {
+            val ranges = listOf(
+                IngredientRange(3, 5),
+                IngredientRange(4, 7),
+            )
+            val newRanges = removeIngredientRangeOverlaps(ranges)
+            newRanges shouldBe listOf(
+                IngredientRange(3, 3),
+                IngredientRange(4, 7),
+            )
+        }
+
+        @Test
+        fun `remove overlap on 3 ranges`() {
+            val ranges = listOf(
+                IngredientRange(3, 6),
+                IngredientRange(4, 7),
+                IngredientRange(5, 8),
+            )
+            val newRanges = removeIngredientRangeOverlaps(ranges)
+            newRanges shouldBe listOf(
+                IngredientRange(3, 3),
+                IngredientRange(4, 4),
+                IngredientRange(5, 8),
+            )
+        }
+    }
+
+    @Nested
     inner class ParseInputTest {
         @Test
         fun `gets 1 range and 1 ingredient`() {

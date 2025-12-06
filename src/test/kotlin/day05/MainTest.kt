@@ -78,6 +78,20 @@ class MainTest {
                 IngredientRange(5, 8),
             )
         }
+
+        @Test
+        fun `remove overlap with ranges entirely within another range`() {
+            val ranges = listOf(
+                IngredientRange(3, 6),
+                IngredientRange(6, 7),
+                IngredientRange(5, 8),
+            )
+            val newRanges = removeIngredientRangeOverlaps(ranges)
+            newRanges shouldBe listOf(
+                IngredientRange(3, 4),
+                IngredientRange(5, 8),
+            )
+        }
     }
 
     @Nested

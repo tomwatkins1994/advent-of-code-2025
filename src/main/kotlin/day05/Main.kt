@@ -55,22 +55,32 @@ fun removeIngredientRangeOverlaps(ingredientRanges: List<IngredientRange>): List
     for ((index, ingredientRange) in newIngredientRanges.withIndex()) {
         for ((compareIndex, compareIngredientRange) in newIngredientRanges.withIndex()) {
             if (index == compareIndex) continue
-            if (
-                ingredientRange.from >= compareIngredientRange.from
-                && ingredientRange.from <= compareIngredientRange.to
-            ) {
-                ingredientRange.from = compareIngredientRange.to + 1
-            }
-            if (
-                ingredientRange.to >= compareIngredientRange.from
-                && ingredientRange.to <= compareIngredientRange.to
-            ) {
-                ingredientRange.to = compareIngredientRange.from - 1
+            val fromInRange = (ingredientRange.from >= compareIngredientRange.from
+                    && ingredientRange.from <= compareIngredientRange.to
+                    )
+            val toInRange = (ingredientRange.to >= compareIngredientRange.from
+                    && ingredientRange.to <= compareIngredientRange.to)
+            if (fromInRange && toInRange) {
+                ingredientRange.from = 0
+                ingredientRange.to = 0
+            } else {
+                if (
+                    fromInRange
+                ) {
+                    ingredientRange.from = compareIngredientRange.to + 1
+                }
+                if (
+                    toInRange
+                ) {
+                    ingredientRange.to = compareIngredientRange.from - 1
+                }
             }
         }
     }
 
-    return newIngredientRanges.map { it.toImmutable() }
+    return newIngredientRanges
+        .filter { it.from > 0 && it.to > 0 }
+        .map { it.toImmutable() }
 }
 
 fun parseInput(input: String): Ingredients {

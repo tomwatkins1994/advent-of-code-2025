@@ -33,5 +33,16 @@ class MainTest {
             val accessibleRolls = getAccessibleRolls(rows)
             accessibleRolls shouldBe 6
         }
+
+        @Test
+        fun `corners should always be accessible`() {
+            val rows = listOf(
+                "@........@",
+                "..........",
+                "@........@",
+            )
+            val accessibleRolls = getAccessibleRolls(rows)
+            accessibleRolls shouldBe 4
+        }
     }
 }

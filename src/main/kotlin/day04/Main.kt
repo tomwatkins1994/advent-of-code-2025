@@ -61,7 +61,8 @@ fun getAccessibleRolls(rows: List<String>): Int {
     }
 
     if (accessibleRolls.isNotEmpty()) {
-        return accessibleRolls.size + getAccessibleRolls(markRollsRemoved(rows, accessibleRolls))
+        val rowsWithRollsRemoved = markRollsRemoved(rows, accessibleRolls)
+        return accessibleRolls.size + getAccessibleRolls(rowsWithRollsRemoved)
     }
 
     return 0

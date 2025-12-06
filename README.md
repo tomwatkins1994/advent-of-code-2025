@@ -69,3 +69,5 @@
     * I had a lot of logic in the `getTotalFreshIngredients`, including logic to remove overlaps. Breaking out this
       logic made it much easier to test and work out issues
     * All the tests (including the acceptance test) passed but the answer was wrong, not initially sure why this is
+    * It occured to me than ranges wholly contained within another range weren't being handled - added a test case and
+      getting this to pass meant my solution was now correct

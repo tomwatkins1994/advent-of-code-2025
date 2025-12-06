@@ -10,8 +10,8 @@ fun main() {
 fun getAccessibleRolls(rows: List<String>): Int {
     val accessibleRolls: MutableList<Pair<Int, Int>> = mutableListOf()
     rows.forEachIndexed { rowIndex, row ->
-        row.forEachIndexed { colIndex, value ->
-            if (value.toString() == "@") {
+        row.forEachIndexed { colIndex, col ->
+            if (col.toString() == "@") {
                 val isTopRow = rowIndex == 0
                 val isBottomRow = rowIndex == rows.size - 1
                 val isLeftEdge = colIndex == 0

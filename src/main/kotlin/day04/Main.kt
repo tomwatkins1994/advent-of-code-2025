@@ -23,31 +23,33 @@ fun getAccessibleRolls(rows: List<String>): Int {
                 } else if (isTopRow && isBottomRow) {
                     accessibleRolls.add(Pair(rowIndex, colIndex))
                 } else {
-                    var countAdjacent = 0
+                    val coordsToCheck = mutableListOf<Pair<Int, Int>>()
                     if (!isTopRow) {
                         if (!isLeftEdge) {
-                            if (rows[rowIndex - 1][colIndex - 1].toString() == "@") countAdjacent++
+                            coordsToCheck.add(Pair(rowIndex - 1, colIndex - 1))
                         }
-                        if (rows[rowIndex - 1][colIndex].toString() == "@") countAdjacent++
+                        coordsToCheck.add(Pair(rowIndex - 1, colIndex))
                         if (!isRightEdge) {
-                            if (rows[rowIndex - 1][colIndex + 1].toString() == "@") countAdjacent++
+                            coordsToCheck.add(Pair(rowIndex - 1, colIndex + 1))
                         }
                     }
                     if (!isLeftEdge) {
-                        if (rows[rowIndex][colIndex - 1].toString() == "@") countAdjacent++
+                        coordsToCheck.add(Pair(rowIndex, colIndex - 1))
                     }
                     if (!isRightEdge) {
-                        if (rows[rowIndex][colIndex + 1].toString() == "@") countAdjacent++
+                        coordsToCheck.add(Pair(rowIndex, colIndex + 1))
                     }
                     if (!isBottomRow) {
                         if (!isLeftEdge) {
-                            if (rows[rowIndex + 1][colIndex - 1].toString() == "@") countAdjacent++
+                            coordsToCheck.add(Pair(rowIndex + 1, colIndex - 1))
                         }
-                        if (rows[rowIndex + 1][colIndex].toString() == "@") countAdjacent++
+                        coordsToCheck.add(Pair(rowIndex + 1, colIndex))
                         if (!isRightEdge) {
-                            if (rows[rowIndex + 1][colIndex + 1].toString() == "@") countAdjacent++
+                            coordsToCheck.add(Pair(rowIndex + 1, colIndex + 1))
                         }
                     }
+
+                    val countAdjacent = coordsToCheck.filter { rows[it.first][it.second].toString() == "@" }.size
                     if (countAdjacent < 4) {
                         accessibleRolls.add(Pair(rowIndex, colIndex))
                     }

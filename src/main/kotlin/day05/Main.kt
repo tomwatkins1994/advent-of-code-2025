@@ -9,8 +9,9 @@ data class Ingredients(
     val available: Set<Int>
 )
 
-fun getFreshIngredients(input: String): List<Int> {
-    return listOf()
+fun getFreshAndAvailableIngredients(input: String): Set<Int> {
+    val ingredients = parseInput(input)
+    return ingredients.available.filter { ingredients.fresh.contains(it) }.toSet()
 }
 
 fun parseInput(input: String): Ingredients {

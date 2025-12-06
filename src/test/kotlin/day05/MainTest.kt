@@ -22,7 +22,7 @@ class MainTest {
                 17
                 32
             """.trimIndent()
-            val freshIngredients = getFreshIngredients(input)
+            val freshIngredients = getFreshAndAvailableIngredients(input)
             freshIngredients.size shouldBe 3
         }
     }

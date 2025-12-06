@@ -52,7 +52,7 @@ class MainTest {
                 "@@@.@@@.@@"
             )
             val accessibleRolls = getAccessibleRolls(rows)
-            accessibleRolls shouldBe 9
+            accessibleRolls shouldBe 14
         }
 
         @Test
@@ -63,7 +63,7 @@ class MainTest {
                 "@.@.@.@.@@"
             )
             val accessibleRolls = getAccessibleRolls(rows)
-            accessibleRolls shouldBe 10
+            accessibleRolls shouldBe 20
         }
     }
 

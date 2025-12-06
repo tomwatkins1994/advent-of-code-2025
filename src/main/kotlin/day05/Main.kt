@@ -7,18 +7,24 @@ fun main() {
     println("Fresh and available ingredients: ${result.size}")
 }
 
+data class IngredientRange(
+    val from: Long,
+    val to: Long
+)
+
 data class Ingredients(
-    val fresh: Set<Long>,
+    val fresh: List<IngredientRange>,
     val available: Set<Long>
 )
 
 fun getFreshAndAvailableIngredients(input: String): Set<Long> {
     val ingredients = parseInput(input)
-    return ingredients.available.filter { ingredients.fresh.contains(it) }.toSet()
+    return setOf()
+//    return ingredients.available.filter { ingredients.fresh.contains(it) }.toSet()
 }
 
 fun parseInput(input: String): Ingredients {
-    val fresh = mutableSetOf<Long>()
+    val fresh = mutableListOf<IngredientRange>()
     val available = mutableSetOf<Long>()
 
     var inRanges = true
@@ -29,9 +35,7 @@ fun parseInput(input: String): Ingredients {
         }
         if (inRanges) {
             val range = line.split("-")
-            for (ingredient in range.first().toLong()..range.last().toLong()) {
-                fresh.add(ingredient)
-            }
+            fresh.add(IngredientRange(from = range.first().toLong(), to = range.last().toLong()))
         } else {
             available.add(line.toLong())
         }

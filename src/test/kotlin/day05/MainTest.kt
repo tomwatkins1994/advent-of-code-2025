@@ -37,19 +37,7 @@ class MainTest {
                 1
             """.trimIndent()
             val parsedInput = parseInput(input)
-            parsedInput shouldBe Ingredients(fresh = setOf(3, 4, 5), available = setOf(1))
-        }
-
-        @Test
-        fun `handle overlap`() {
-            val input = """
-                3-5
-                4-6
-                
-                1
-            """.trimIndent()
-            val parsedInput = parseInput(input)
-            parsedInput shouldBe Ingredients(fresh = setOf(3, 4, 5, 6), available = setOf(1))
+            parsedInput shouldBe Ingredients(fresh = listOf(IngredientRange(3, 5)), available = setOf(1))
         }
 
         @Test
@@ -63,7 +51,10 @@ class MainTest {
                 4
             """.trimIndent()
             val parsedInput = parseInput(input)
-            parsedInput shouldBe Ingredients(fresh = setOf(3, 4, 5, 7, 8), available = setOf(1, 2, 4))
+            parsedInput shouldBe Ingredients(
+                fresh = listOf(IngredientRange(3, 5), IngredientRange(7, 8)),
+                available = setOf(1, 2, 4)
+            )
         }
     }
 }

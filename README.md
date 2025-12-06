@@ -65,3 +65,7 @@
 * **Part 2** -
     * Immediately had to go back to thinking that my original `Set` approach was good but need to think of how to avoid
       the OOM issues as I had before
+    * `Set` was still not the right approach as I quickly identified
+    * I had a lot of logic in the `getTotalFreshIngredients`, including logic to remove overlaps. Breaking out this
+      logic made it much easier to test and work out issues
+    * All the tests (including the acceptance test) passed but the answer was wrong, not initially sure why this is

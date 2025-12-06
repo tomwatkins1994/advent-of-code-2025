@@ -45,6 +45,7 @@ fun getFreshAndAvailableIngredients(input: String): Set<Long> {
 fun getTotalFreshIngredients(input: String): Long {
     val ingredients = parseInput(input)
     return removeIngredientRangeOverlaps(ingredients.fresh).sumOf {
+        println(it)
         (it.to - it.from) + 1
     }
 }

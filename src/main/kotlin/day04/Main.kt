@@ -5,5 +5,5 @@ fun main() {
 }
 
 fun getAccessibleRolls(rows: List<String>): Int {
-    return 0
+    return rows[0].count { it == '@' }
 }

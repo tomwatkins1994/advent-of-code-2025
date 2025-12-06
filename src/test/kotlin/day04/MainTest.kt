@@ -24,5 +24,14 @@ class MainTest {
             val accessibleRolls = getAccessibleRolls(rows)
             accessibleRolls shouldBe 13
         }
+
+        @Test
+        fun `1 row should contain only accessible rolls`() {
+            val rows = listOf(
+                "..@@.@@@@."
+            )
+            val accessibleRolls = getAccessibleRolls(rows)
+            accessibleRolls shouldBe 6
+        }
     }
 }

@@ -4,7 +4,7 @@ import java.io.File
 
 fun main() {
     val result = getFreshAndAvailableIngredients(File("src/main/kotlin/day05/input.txt").readText())
-    println("Fresh and available ingredients: $result")
+    println("Fresh and available ingredients: ${result.size}")
 }
 
 data class Ingredients(

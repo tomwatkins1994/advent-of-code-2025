@@ -51,3 +51,5 @@
     * Refactoring was initially changing to a `for...in` loop so I could do early returns to avoid so much nesting in
       the code
     * I also removed the repetitive code to check for `@`
+    * I experimented with trying to make the list of locations a single list but this made the code needlessly complex
+      just to avoid one level of nesting

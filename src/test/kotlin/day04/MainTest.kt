@@ -44,5 +44,26 @@ class MainTest {
             val accessibleRolls = getAccessibleRolls(rows)
             accessibleRolls shouldBe 4
         }
+
+        @Test
+        fun `2 rows should handle getting accessible rolls with only rows above or below`() {
+            val rows = listOf(
+                "..@@.@@@@.",
+                "@@@.@@@.@@"
+            )
+            val accessibleRolls = getAccessibleRolls(rows)
+            accessibleRolls shouldBe 9
+        }
+
+        @Test
+        fun `3 rows should handle getting accessible rolls with only rows above or below`() {
+            val rows = listOf(
+                "..@@.@@@@.",
+                "@@@.@@@.@@",
+                "@.@.@.@.@@"
+            )
+            val accessibleRolls = getAccessibleRolls(rows)
+            accessibleRolls shouldBe 10
+        }
     }
 }

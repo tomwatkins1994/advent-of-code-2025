@@ -17,9 +17,37 @@ fun getAccessibleRolls(rows: List<String>): Int {
 
                 if (isCorner) {
                     accessibleRolls++
-                } else {
+                } else if (isTopRow && isBottomRow) {
                     accessibleRolls++
+                } else {
+                    var countAdjacent = 0
+                    if (!isTopRow) {
+                        if (!isLeftEdge) {
+                            if (rows[rowIndex - 1][colIndex - 1].toString() == "@") countAdjacent++
+                        }
+                        if (rows[rowIndex - 1][colIndex].toString() == "@") countAdjacent++
+                        if (!isRightEdge) {
+                            if (rows[rowIndex - 1][colIndex + 1].toString() == "@") countAdjacent++
+                        }
+                    }
+                    if (!isLeftEdge) {
+                        if (rows[rowIndex][colIndex - 1].toString() == "@") countAdjacent++
+                    }
+                    if (!isRightEdge) {
+                        if (rows[rowIndex][colIndex + 1].toString() == "@") countAdjacent++
+                    }
+                    if (!isBottomRow) {
+                        if (!isLeftEdge) {
+                            if (rows[rowIndex + 1][colIndex - 1].toString() == "@") countAdjacent++
+                        }
+                        if (rows[rowIndex + 1][colIndex].toString() == "@") countAdjacent++
+                        if (!isRightEdge) {
+                            if (rows[rowIndex + 1][colIndex + 1].toString() == "@") countAdjacent++
+                        }
+                    }
+                    if (countAdjacent < 4) accessibleRolls++
                 }
+
             }
         }
     }

@@ -45,28 +45,28 @@ fun getFreshAndAvailableIngredients(input: String): Set<Long> {
 fun getTotalFreshIngredients(input: String): Long {
     val ingredients = parseInput(input)
     return removeIngredientRangeOverlaps(ingredients.fresh).sumOf {
-        println(it)
         (it.to - it.from) + 1
     }
 }
 
 fun removeIngredientRangeOverlaps(ingredientRanges: List<IngredientRange>): List<IngredientRange> {
     val newIngredientRanges = ingredientRanges.map { it.toMutable() }
-    for ((index, ingredientRange) in newIngredientRanges.withIndex()) {
+    for ((currentIndex, ingredientRange) in newIngredientRanges.withIndex()) {
         for ((compareIndex, compareTo) in newIngredientRanges.withIndex()) {
-            if (index == compareIndex) continue
-            val fromInRange = (ingredientRange.from >= compareTo.from
-                    && ingredientRange.from <= compareTo.to)
-            val toInRange = (ingredientRange.to >= compareTo.from
-                    && ingredientRange.to <= compareTo.to)
-            if (fromInRange && toInRange) {
-                // Set these to 0 so we can ignore them
+            if (currentIndex == compareIndex) continue
+
+            val fromWithinRange = (ingredientRange.from in compareTo.from..compareTo.to)
+            val toWithinRange = (ingredientRange.to in compareTo.from..compareTo.to)
+
+            if (fromWithinRange && toWithinRange) {
+                // Set these to 0 so we filter them out later
                 ingredientRange.from = 0
                 ingredientRange.to = 0
-            } else {
-                if (fromInRange) ingredientRange.from = compareTo.to + 1
-                if (toInRange) ingredientRange.to = compareTo.from - 1
+                continue
             }
+
+            if (fromWithinRange) ingredientRange.from = compareTo.to + 1
+            if (toWithinRange) ingredientRange.to = compareTo.from - 1
         }
     }
 
@@ -79,13 +79,13 @@ fun parseInput(input: String): Ingredients {
     val fresh = mutableListOf<IngredientRange>()
     val available = mutableSetOf<Long>()
 
-    var inRanges = true
+    var inRangesSection = true
     for (line in input.lines()) {
         if (line == "") {
-            inRanges = false
+            inRangesSection = false
             continue
         }
-        if (inRanges) {
+        if (inRangesSection) {
             val range = line.split("-")
             fresh.add(IngredientRange(from = range.first().toLong(), to = range.last().toLong()))
         } else {

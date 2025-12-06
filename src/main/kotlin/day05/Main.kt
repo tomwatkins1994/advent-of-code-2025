@@ -44,31 +44,9 @@ fun getFreshAndAvailableIngredients(input: String): Set<Long> {
 
 fun getTotalFreshIngredients(input: String): Long {
     val ingredients = parseInput(input)
-    var totalFreshIngredients = 0L
-    for ((index, ingredientRange) in ingredients.fresh.withIndex()) {
-        val newIngredientRange = MutableIngredientRange(
-            from = ingredientRange.from,
-            to = ingredientRange.to
-        )
-        for ((compareIndex, compareIngredientRange) in ingredients.fresh.withIndex()) {
-            if (index == compareIndex) continue
-            if (
-                newIngredientRange.from >= compareIngredientRange.from
-                && newIngredientRange.from <= compareIngredientRange.to
-            ) {
-                newIngredientRange.from = compareIngredientRange.to + 1
-            }
-            if (
-                newIngredientRange.to >= compareIngredientRange.from
-                && newIngredientRange.to <= compareIngredientRange.to
-            ) {
-                newIngredientRange.to = compareIngredientRange.from - 1
-            }
-        }
-        totalFreshIngredients += (newIngredientRange.to - newIngredientRange.from) + 1
+    return removeIngredientRangeOverlaps(ingredients.fresh).sumOf {
+        (it.to - it.from) + 1
     }
-
-    return totalFreshIngredients
 }
 
 fun removeIngredientRangeOverlaps(ingredientRanges: List<IngredientRange>): List<IngredientRange> {

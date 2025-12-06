@@ -36,3 +36,8 @@
     * My instinct to avoid the refactor was good, I am not sure I would have ended up at the same place I ended up at by
       the end
     * Wasn't a huge amount of obvious refactoring after getting the answer due to the simplicity of the solution
+
+## Day 04
+
+* **Part 1** - Code produced feels ugly and repetitive but solution wasn't too difficult. Identifying that corners
+  should always be accessible early helped

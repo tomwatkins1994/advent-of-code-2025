@@ -1,7 +1,10 @@
 package day04
 
-fun main() {
+import java.io.File
 
+fun main() {
+    val result = File("src/main/kotlin/day04/input.txt").useLines { getAccessibleRolls(it.toList()) }
+    println("Accessible rolls: $result")
 }
 
 fun getAccessibleRolls(rows: List<String>): Int {

@@ -52,6 +52,7 @@ class MainTest {
             parsedInput shouldBe Ingredients(fresh = setOf(3, 4, 5, 6), available = setOf(1))
         }
 
+        @Test
         fun `gets multiple ranges and ingredients`() {
             val input = """
                 3-5

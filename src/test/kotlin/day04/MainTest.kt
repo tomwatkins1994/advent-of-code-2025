@@ -66,4 +66,33 @@ class MainTest {
             accessibleRolls shouldBe 10
         }
     }
+
+    @Nested
+    inner class MarkRollsRemovedTest {
+        @Test
+        fun `remove 1 roll`() {
+            val rows = listOf(
+                "..@@.@@@@."
+            )
+            val rollsToRemove = listOf(Pair(0, 2))
+            val newRows = markRollsRemoved(rows, rollsToRemove)
+            newRows shouldBe listOf(
+                "..x@.@@@@."
+            )
+        }
+
+        @Test
+        fun `remove 2 rolls`() {
+            val rows = listOf(
+                "..@@.@@@@.",
+                "@@@.@@@.@@",
+            )
+            val rollsToRemove = listOf(Pair(0, 2), Pair(1, 5))
+            val newRows = markRollsRemoved(rows, rollsToRemove)
+            newRows shouldBe listOf(
+                "..x@.@@@@.",
+                "@@@.@x@.@@",
+            )
+        }
+    }
 }

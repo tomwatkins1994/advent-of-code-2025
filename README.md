@@ -90,3 +90,11 @@
     * Made pretty good use of the debug on this one
     * Reversing the numbers made parsing them a lot easier
     * Kotlin functional syntax made the code really nice to work with on this one
+
+## Day 07
+
+* **Part 1** - One of the more challenging part 1's but the most enjoyable so far for some reason
+    * I nearly pivoted to OOP at one point to track the splits but tracking an intersection popped into my head just as
+      I was getting into that so I scrapped it
+    * Wasted some time on trying to use regexes to track split beams which was unwise - also misread the brief so
+      tracked the splits instead of the times a beam was split

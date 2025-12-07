@@ -71,6 +71,13 @@ class MainTest {
             val positions = getNumberOfSplits(line)
             positions shouldBe 2
         }
+
+        @Test
+        fun `get multiple splits next to each other`() {
+            val line = "......|^|^|...."
+            val positions = getNumberOfSplits(line)
+            positions shouldBe 2
+        }
     }
 
     @Nested

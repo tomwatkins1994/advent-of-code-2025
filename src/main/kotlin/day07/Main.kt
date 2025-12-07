@@ -21,7 +21,7 @@ fun getBeamPositions(line: String): List<Int> {
 }
 
 fun getNumberOfSplits(line: String): Int {
-    return Regex(Regex.escape("|^|")).findAll(line).count()
+    return Regex.fromLiteral("|^").findAll(line).count()
 }
 
 fun drawBeam(line: String, positions: List<Int>): String {

@@ -83,5 +83,8 @@
       life easier
       ~~* I quickly realised that by getting the operators first I could get the length of the columns a bit easier~~
     * ^ Was a bad assumption - trying to be too clever
-    * I took for granted that the last number would be padded with spaces so I wouldn't have to worry about out of range
+    * I took for granted that the last number would be padded with spaces, so I wouldn't have to worry about out of
+      range
       issues - wrong
+    * Breaking every little issue into a new function with its own tests made this so much easier to work out and debug
+    * Made pretty good use of the debug on this one

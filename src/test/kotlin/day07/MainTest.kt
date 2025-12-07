@@ -57,26 +57,19 @@ class MainTest {
     }
 
     @Nested
-    inner class GetNumberOfSplitsTest {
+    inner class GetSplitPositionsTest {
         @Test
-        fun `get single split`() {
-            val line = "......|^|......"
-            val positions = getNumberOfSplits(line)
-            positions shouldBe 1
+        fun `get single split position`() {
+            val line = ".......^......."
+            val positions = getSplitPositions(line)
+            positions shouldBe listOf(7)
         }
 
         @Test
-        fun `get multiple splits`() {
-            val line = "......|^|.|^|.."
-            val positions = getNumberOfSplits(line)
-            positions shouldBe 2
-        }
-
-        @Test
-        fun `get multiple splits next to each other`() {
-            val line = "......|^|^|...."
-            val positions = getNumberOfSplits(line)
-            positions shouldBe 2
+        fun `get multiple split positions`() {
+            val line = ".......^.^....."
+            val positions = getSplitPositions(line)
+            positions shouldBe listOf(7, 9)
         }
     }
 

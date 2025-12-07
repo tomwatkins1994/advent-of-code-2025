@@ -8,9 +8,10 @@ fun getTotalNumberOfSplits(input: String): Int {
     var positions = listOf<Int>()
     var numberOfSplits = 0
     for (line in input.lines()) {
+        val splitPositions = getSplitPositions(line)
+        numberOfSplits += splitPositions.intersect(positions).count()
         val newLine = drawBeam(line, positions)
         positions = getBeamPositions(newLine)
-        numberOfSplits += getNumberOfSplits(newLine)
     }
 
     return numberOfSplits
@@ -20,8 +21,8 @@ fun getBeamPositions(line: String): List<Int> {
     return line.mapIndexedNotNull { index, elem -> index.takeIf { elem == 'S' || elem == '|' } }
 }
 
-fun getNumberOfSplits(line: String): Int {
-    return Regex.fromLiteral("|^").findAll(line).count()
+fun getSplitPositions(line: String): List<Int> {
+    return line.mapIndexedNotNull { index, elem -> index.takeIf { elem == '^' } }
 }
 
 fun drawBeam(line: String, positions: List<Int>): String {

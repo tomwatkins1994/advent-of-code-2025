@@ -57,5 +57,22 @@ class MainTest {
             val problems = parseInput(input)
             problems.map { it.operator } shouldBe listOf("*", "+", "*", "+")
         }
+
+        @Test
+        fun `should get numbers from more than one column`() {
+            val input = """
+                123 328  51 64
+                 45 64  387 23
+                  6 98  215 314
+                *   +   *   +
+            """.trimIndent()
+            val problems = parseInput(input)
+            problems.map { it.numbers } shouldBe listOf(
+                listOf(123, 45, 6),
+                listOf(328, 64, 98),
+                listOf(51, 387, 215),
+                listOf(64, 23, 314),
+            )
+        }
     }
 }

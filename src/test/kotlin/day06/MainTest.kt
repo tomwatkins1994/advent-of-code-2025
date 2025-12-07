@@ -43,7 +43,7 @@ class MainTest {
                 *  
             """.trimIndent()
             val problems = parseInput(input)
-            problems.map { it.numbers } shouldBe listOf(123, 45, 6)
+            problems.map { it.numbers } shouldBe listOf(listOf(123, 45, 6))
         }
 
         @Test

@@ -77,6 +77,21 @@ class MainTest {
     }
 
     @Nested
+    inner class ParseOperatorLineTest {
+        @Test
+        fun `should get operator and from one column left aligned`() {
+            val cols = parseOperatorLine("*  ")
+            cols shouldBe listOf(Column(operator = "*", size = 3))
+        }
+
+        @Test
+        fun `should get operator and from one column right aligned`() {
+            val cols = parseOperatorLine("*  ")
+            cols shouldBe listOf(Column(operator = "*", size = 3))
+        }
+    }
+
+    @Nested
     inner class SolveProblemTest {
         @Test
         fun `solve problem with addition`() {

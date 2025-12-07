@@ -20,17 +20,57 @@ data class Problem(
 fun parseInput(input: String): List<Problem> {
     val numbers: MutableList<List<String>> = mutableListOf()
     val operators: MutableList<String> = mutableListOf()
+
     for ((index, value) in input.lines().withIndex()) {
-        val values = value.split(Regex("\\s+")).filter { it.isNotBlank() }
         if (index == input.lines().size - 1) {
             operators.addAll(value.split(Regex("\\s+")).filter { it.isNotBlank() })
         } else {
+            val numbersToAdd = buildList {
+                var valueToAdd = ""
+                for (char in value) {
+                    if (char.isDigit()) valueToAdd += char
+                    if (char.isWhitespace()) {
+                        if (valueToAdd.isNotBlank()) {
+                            add(valueToAdd)
+                            valueToAdd = ""
+                        } else {
+                            valueToAdd += char
+                        }
+                    }
+                }
+                add("")
+            }
             numbers.add(listOf(value.split(" ").joinToString("") { it.ifBlank { " " } }))
         }
     }
 
     return operators.mapIndexed { index, operator ->
-        Problem(numbers = numbers.map { it[index].toInt() }, operator = operator)
+        Problem(
+            numbers = readNumbers(numbers.map { it[index] }),
+            operator = operator
+        )
+    }
+}
+
+data class Column(
+    val operator: String,
+    val size: Int
+)
+
+fun parseOperatorLine(line: String): List<Column> {
+    return buildList {
+        var length = 0
+        var operator = ""
+        for ((index, char) in line.withIndex()) {
+            length++
+            if (!char.isWhitespace() || index == line.length - 1) {
+                if (operator.isNotEmpty()) {
+                    add(Column(operator, length))
+                    length = 0
+                }
+                operator = char.toString()
+            }
+        }
     }
 }
 

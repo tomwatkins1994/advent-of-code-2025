@@ -73,3 +73,8 @@
     * It occurred to me that ranges wholly contained within another range weren't being handled - added a test case and
       getting this to pass meant my solution was now correct
     * Refactoring was mostly just using built-in Kotlin features to reduce code
+
+## Day 06
+
+* **Part 1** - Definitely don't feel like my solution is efficient but working ok, holding off improving until I know
+  what part 2 is

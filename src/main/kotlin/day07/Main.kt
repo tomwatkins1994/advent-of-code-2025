@@ -20,6 +20,19 @@ fun getTotalNumberOfSplits(input: String): Int {
     return numberOfSplits
 }
 
+fun getTotalNumberOfTimelines(input: String): Int {
+//    var positions = listOf<Int>()
+//    var numberOfSplits = 0
+//    for (line in input.lines()) {
+//        val splitPositions = getSplitPositions(line)
+//        numberOfSplits += splitPositions.intersect(positions).count()
+//        val newLine = drawBeam(line, positions)
+//        positions = getBeamPositions(newLine)
+//    }
+
+    return 0
+}
+
 fun getBeamPositions(line: String): List<Int> {
     return line.mapIndexedNotNull { index, elem -> index.takeIf { elem == 'S' || elem == '|' } }
 }
@@ -39,4 +52,17 @@ fun drawBeam(line: String, positions: List<Int>): String {
         }
     }
     return newLine.joinToString("")
+}
+
+fun getPossibleTimelines(line: String, positions: List<Int>): List<String> {
+    return buildList {
+        positions.forEach {
+            if (line[it] == '^') {
+                add(line.replaceRange(it - 1..it - 1, "|"))
+                add(line.replaceRange(it + 1..it + 1, "|"))
+            } else {
+                add(line.replaceRange(it..it, "|"))
+            }
+        }
+    }
 }

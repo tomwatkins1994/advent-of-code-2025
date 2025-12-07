@@ -33,6 +33,33 @@ class MainTest {
     }
 
     @Nested
+    inner class GetTotalNumberOfTimelinesTest {
+        @Test
+        fun `acceptance test based on known input and output`() {
+            val input = """
+                .......S.......
+                ...............
+                .......^.......
+                ...............
+                ......^.^......
+                ...............
+                .....^.^.^.....
+                ...............
+                ....^.^...^....
+                ...............
+                ...^.^...^.^...
+                ...............
+                ..^...^.....^..
+                ...............
+                .^.^.^.^.^...^.
+                ...............
+            """.trimIndent()
+            val numberOfSplits = getTotalNumberOfTimelines(input)
+            numberOfSplits shouldBe 40
+        }
+    }
+
+    @Nested
     inner class GetBeamPositionsTest {
         @Test
         fun `get starting position`() {
@@ -101,6 +128,23 @@ class MainTest {
             val line = ".......^.^....."
             val newBeam = drawBeam(line, listOf(7, 9))
             newBeam shouldBe "......|^|^|...."
+        }
+    }
+
+    @Nested
+    inner class GetPossibleTimelinesTest {
+        @Test
+        fun `return 1 timeline when no splitters`() {
+            val line = "..............."
+            val newBeam = getPossibleTimelines(line, listOf(7))
+            newBeam shouldBe listOf(".......|.......")
+        }
+
+        @Test
+        fun `return 2 timelines when there is a splitter`() {
+            val line = ".......^......."
+            val newBeam = getPossibleTimelines(line, listOf(7))
+            newBeam shouldBe listOf("......|^.......", ".......^|......")
         }
     }
 }

@@ -1,7 +1,10 @@
 package day06
 
-fun main() {
+import java.io.File
 
+fun main() {
+    val answer = getAnswer(File("src/main/kotlin/day06/input.txt").readText())
+    println("Answer: $answer")
 }
 
 fun getAnswer(input: String): Long {

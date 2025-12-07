@@ -78,3 +78,6 @@
 
 * **Part 1** - Definitely don't feel like my solution is efficient but working ok, holding off improving until I know
   what part 2 is
+* **Part 2**
+    * I decided to refactor my current solution first whilst I still had passing tests as I figured this would make my
+      life easier

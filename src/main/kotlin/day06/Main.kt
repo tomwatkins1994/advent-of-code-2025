@@ -21,10 +21,11 @@ fun parseInput(input: String): List<Problem> {
     val numbers: MutableList<List<Int>> = mutableListOf()
     val operators: MutableList<String> = mutableListOf()
     for ((index, value) in input.lines().withIndex()) {
+        val values = value.split(Regex("\\s+")).filter { it.isNotBlank() }
         if (index == input.lines().size - 1) {
-            operators.addAll(value.split(Regex("\\s+")).filter { it.isNotBlank() })
+            operators.addAll(values)
         } else {
-            numbers.add(value.split(Regex("\\s+")).filter { it.isNotBlank() }.map { it.toInt() })
+            numbers.add(values.map { it.toInt() })
         }
     }
 

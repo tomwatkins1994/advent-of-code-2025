@@ -1,7 +1,10 @@
 package day07
 
-fun main() {
+import java.io.File
 
+fun main() {
+    val answer = getTotalNumberOfSplits(File("src/main/kotlin/day07/input.txt").readText())
+    println("Answer: $answer")
 }
 
 fun getTotalNumberOfSplits(input: String): Int {

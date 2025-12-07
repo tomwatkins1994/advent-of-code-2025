@@ -21,26 +21,18 @@ fun parseInput(input: String): List<Problem> {
     val numbers: MutableList<List<String>> = mutableListOf()
     val operators: MutableList<String> = mutableListOf()
 
-    for ((index, value) in input.lines().withIndex()) {
+    val columnLengths = getColumnLengths(input)
+
+    for ((index, line) in input.lines().withIndex()) {
         if (index == input.lines().size - 1) {
-            operators.addAll(value.split(Regex("\\s+")).filter { it.isNotBlank() })
+            operators.addAll(line.split(Regex("\\s+")).filter { it.isNotBlank() })
         } else {
-            val numbersToAdd = buildList {
-                var valueToAdd = ""
-                for (char in value) {
-                    if (char.isDigit()) valueToAdd += char
-                    if (char.isWhitespace()) {
-                        if (valueToAdd.isNotBlank()) {
-                            add(valueToAdd)
-                            valueToAdd = ""
-                        } else {
-                            valueToAdd += char
-                        }
-                    }
-                }
-                add("")
-            }
-            numbers.add(listOf(value.split(" ").joinToString("") { it.ifBlank { " " } }))
+            var currentPosition = 0
+            numbers.add(columnLengths.map {
+                val number = line.substring(currentPosition, currentPosition + it)
+                currentPosition += it + 1
+                number
+            })
         }
     }
 

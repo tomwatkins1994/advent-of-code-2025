@@ -32,13 +32,28 @@ class MainTest {
         }
     }
 
-    @Test
-    fun `get starting position`() {
-        val input = """
-            .......S.......
-        """.trimIndent()
-        val startingPosition = getStartingPosition(input)
-        startingPosition shouldBe 7
+    @Nested
+    inner class GetBeamPositionsTest {
+        @Test
+        fun `get starting position`() {
+            val line = ".......S......."
+            val positions = getBeamPositions(line)
+            positions shouldBe listOf(7)
+        }
+
+        @Test
+        fun `get single beam position`() {
+            val line = ".......|......."
+            val positions = getBeamPositions(line)
+            positions shouldBe listOf(7)
+        }
+
+        @Test
+        fun `get multiple beam positions`() {
+            val line = ".......|.|....."
+            val positions = getBeamPositions(line)
+            positions shouldBe listOf(7, 9)
+        }
     }
 
     @Nested

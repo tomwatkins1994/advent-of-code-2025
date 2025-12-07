@@ -52,28 +52,6 @@ fun parseInput(input: String): List<Problem> {
     }
 }
 
-data class Column(
-    val operator: String,
-    val size: Int
-)
-
-fun parseOperatorLine(line: String): List<Column> {
-    return buildList {
-        var length = 0
-        var operator = ""
-        for ((index, char) in line.withIndex()) {
-            length++
-            if (!char.isWhitespace() || index == line.length - 1) {
-                if (operator.isNotEmpty()) {
-                    add(Column(operator, length))
-                    length = 0
-                }
-                operator = char.toString()
-            }
-        }
-    }
-}
-
 fun solveProblem(problem: Problem): Long {
     return when (problem.operator) {
         "+" -> problem.numbers.map { it.toLong() }.reduce { acc, i -> acc + i }

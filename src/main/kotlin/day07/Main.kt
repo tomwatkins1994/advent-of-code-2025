@@ -13,5 +13,9 @@ fun getStartingPosition(input: String): Int {
 }
 
 fun drawBeam(line: String, positions: List<Int>): String {
-    return line.replaceRange(positions.first()..positions.first(), "|")
+    var newLine = line
+    positions.forEach {
+        newLine = newLine.replaceRange(it..it, "|")
+    }
+    return newLine
 }

@@ -44,10 +44,17 @@ class MainTest {
     @Nested
     inner class DrawBeamTest {
         @Test
-        fun `draw pipe with no splitters`() {
+        fun `draw beam with no splitters`() {
             val line = "..............."
             val newBeam = drawBeam(line, listOf(7))
             newBeam shouldBe ".......|......."
+        }
+
+        @Test
+        fun `draw 2 beams with no splitters`() {
+            val line = "..............."
+            val newBeam = drawBeam(line, listOf(3, 9))
+            newBeam shouldBe "...|.....|....."
         }
     }
 }

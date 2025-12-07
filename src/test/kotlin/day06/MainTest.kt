@@ -75,4 +75,17 @@ class MainTest {
             )
         }
     }
+
+    @Nested
+    inner class SolveProblemTest {
+        @Test
+        fun `solve problem with addition`() {
+            val problem = Problem(
+                numbers = listOf(1, 2, 3),
+                operator = "+",
+            )
+            val result = solveProblem(problem)
+            result shouldBe 6
+        }
+    }
 }

@@ -5,7 +5,8 @@ fun main() {
 }
 
 fun getAnswer(input: String): Long {
-    return 0
+    val problems = parseInput(input)
+    return problems.sumOf { solveProblem(it) }
 }
 
 data class Problem(
@@ -26,5 +27,12 @@ fun parseInput(input: String): List<Problem> {
 
     return operators.mapIndexed { index, operator ->
         Problem(numbers = numbers.map { it[index] }, operator = operator)
+    }
+}
+
+fun solveProblem(problem: Problem): Long {
+    return when (problem.operator) {
+        "+" -> problem.numbers.map { it.toLong() }.reduce { acc, i -> acc + i }
+        else -> throw IllegalArgumentException("Invalid operator")
     }
 }

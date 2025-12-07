@@ -40,4 +40,14 @@ class MainTest {
         val startingPosition = getStartingPosition(input)
         startingPosition shouldBe 7
     }
+
+    @Nested
+    inner class DrawBeamTest {
+        @Test
+        fun `draw pipe with no splitters`() {
+            val line = "..............."
+            val newBeam = drawBeam(line, listOf(7))
+            newBeam shouldBe ".......|......."
+        }
+    }
 }

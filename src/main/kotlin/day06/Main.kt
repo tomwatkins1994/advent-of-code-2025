@@ -33,6 +33,7 @@ fun parseInput(input: String): List<Problem> {
 fun solveProblem(problem: Problem): Long {
     return when (problem.operator) {
         "+" -> problem.numbers.map { it.toLong() }.reduce { acc, i -> acc + i }
+        "*" -> problem.numbers.map { it.toLong() }.reduce { acc, i -> acc * i }
         else -> throw IllegalArgumentException("Invalid operator")
     }
 }

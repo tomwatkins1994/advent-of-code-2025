@@ -87,5 +87,15 @@ class MainTest {
             val result = solveProblem(problem)
             result shouldBe 6
         }
+
+        @Test
+        fun `solve problem with multiplication`() {
+            val problem = Problem(
+                numbers = listOf(1, 2, 3, 4),
+                operator = "*",
+            )
+            val result = solveProblem(problem)
+            result shouldBe 24
+        }
     }
 }

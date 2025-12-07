@@ -21,16 +21,32 @@ fun getTotalNumberOfSplits(input: String): Int {
 }
 
 fun getTotalNumberOfTimelines(input: String): Int {
-//    var positions = listOf<Int>()
-//    var numberOfSplits = 0
-//    for (line in input.lines()) {
-//        val splitPositions = getSplitPositions(line)
-//        numberOfSplits += splitPositions.intersect(positions).count()
-//        val newLine = drawBeam(line, positions)
-//        positions = getBeamPositions(newLine)
-//    }
+    var totalPossibleTimelines = 0
+    var positions = listOf<Int>()
+    val lines = input.lines()
+    for ((lineIndex, line) in input.lines().withIndex()) {
+        if (lineIndex == 0) {
+            positions = getBeamPositions(line)
+        } else {
+            totalPossibleTimelines += getPossibleTimelinesFromLine(lines.subList(lineIndex, lines.size - 1), positions)
+        }
+    }
 
-    return 0
+    return totalPossibleTimelines
+}
+
+fun getPossibleTimelinesFromLine(lines: List<String>, positions: List<Int>): Int {
+    var possibleTimelines = 0
+    for ((lineIndex, line) in lines.withIndex()) {
+        val timelines = getPossibleTimelinesForLine(line, positions)
+        possibleTimelines += timelines.size
+        timelines.forEach {
+            val newPositions = getBeamPositions(it)
+            possibleTimelines += getPossibleTimelinesFromLine(lines.subList(lineIndex, lines.size - 1), newPositions)
+        }
+    }
+
+    return possibleTimelines
 }
 
 fun getBeamPositions(line: String): List<Int> {
@@ -54,7 +70,7 @@ fun drawBeam(line: String, positions: List<Int>): String {
     return newLine.joinToString("")
 }
 
-fun getPossibleTimelines(line: String, positions: List<Int>): List<String> {
+fun getPossibleTimelinesForLine(line: String, positions: List<Int>): List<String> {
     return buildList {
         positions.forEach {
             if (line[it] == '^') {

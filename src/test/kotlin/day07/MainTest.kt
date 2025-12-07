@@ -132,18 +132,18 @@ class MainTest {
     }
 
     @Nested
-    inner class GetPossibleTimelinesTest {
+    inner class GetPossibleTimelinesForLineTest {
         @Test
         fun `return 1 timeline when no splitters`() {
             val line = "..............."
-            val newBeam = getPossibleTimelines(line, listOf(7))
+            val newBeam = getPossibleTimelinesForLine(line, listOf(7))
             newBeam shouldBe listOf(".......|.......")
         }
 
         @Test
         fun `return 2 timelines when there is a splitter`() {
             val line = ".......^......."
-            val newBeam = getPossibleTimelines(line, listOf(7))
+            val newBeam = getPossibleTimelinesForLine(line, listOf(7))
             newBeam shouldBe listOf("......|^.......", ".......^|......")
         }
     }

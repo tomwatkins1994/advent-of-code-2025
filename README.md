@@ -73,3 +73,20 @@
     * It occurred to me that ranges wholly contained within another range weren't being handled - added a test case and
       getting this to pass meant my solution was now correct
     * Refactoring was mostly just using built-in Kotlin features to reduce code
+
+## Day 06
+
+* **Part 1** - Definitely don't feel like my solution is efficient but working ok, holding off improving until I know
+  what part 2 is
+* **Part 2**
+    * I decided to refactor my current solution first whilst I still had passing tests as I figured this would make my
+      life easier
+      ~~* I quickly realised that by getting the operators first I could get the length of the columns a bit easier~~
+    * ^ Was a bad assumption - trying to be too clever
+    * I took for granted that the last number would be padded with spaces, so I wouldn't have to worry about out of
+      range
+      issues - wrong
+    * Breaking every little issue into a new function with its own tests made this so much easier to work out and debug
+    * Made pretty good use of the debug on this one
+    * Reversing the numbers made parsing them a lot easier
+    * Kotlin functional syntax made the code really nice to work with on this one

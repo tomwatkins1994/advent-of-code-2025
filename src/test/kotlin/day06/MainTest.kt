@@ -1,0 +1,170 @@
+package day06
+
+import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
+
+class MainTest {
+    @Nested
+    inner class GetAnswerTest {
+        @Test
+        fun `acceptance test based on known input and output`() {
+            val input = """
+                123 328  51 64 
+                 45 64  387 23 
+                  6 98  215 314
+                *   +   *   +  
+            """.trimIndent()
+            val answer = getAnswer(input)
+            answer shouldBe 3263827
+        }
+    }
+
+    @Nested
+    inner class ParseInputTest {
+        @Test
+        fun `should get operator from one column`() {
+            val input = """
+                123
+                 45
+                  6
+                *  
+            """.trimIndent()
+            val problems = parseInput(input)
+            problems.map { it.operator } shouldBe listOf("*")
+        }
+
+        @Test
+        fun `should get numbers from one column`() {
+            val input = """
+                123
+                 45
+                  6
+                *  
+            """.trimIndent()
+            val problems = parseInput(input)
+            problems.map { it.numbers } shouldBe listOf(listOf(356, 24, 1))
+        }
+
+        @Test
+        fun `should get operator from more than one column`() {
+            val input = """
+                123 328  51 64 
+                 45 64  387 23 
+                  6 98  215 314
+                *   +   *   +
+            """.trimIndent()
+            val problems = parseInput(input)
+            problems.map { it.operator } shouldBe listOf("*", "+", "*", "+")
+        }
+
+        @Test
+        fun `should get numbers from more than one column`() {
+            val input = """
+                123 328  51 64 
+                 45 64  387 23 
+                  6 98  215 314
+                *   +   *   +
+            """.trimIndent()
+            val problems = parseInput(input)
+            problems.map { it.numbers } shouldBe listOf(
+                listOf(356, 24, 1),
+                listOf(8, 248, 369),
+                listOf(175, 581, 32),
+                listOf(4, 431, 623),
+            )
+        }
+
+        @Test
+        fun `should handle issue with last number not having padding`() {
+            val input = """
+                  6 98  215 314
+                123 328  51 64
+                *   +   *   +
+            """.trimIndent()
+            val problems = parseInput(input)
+            problems.map { it.numbers } shouldBe listOf(
+                listOf(63, 2, 1),
+                listOf(8, 82, 93),
+                listOf(51, 15, 2),
+                listOf(4, 14, 36),
+            )
+        }
+    }
+
+    @Nested
+    inner class GetColumnLengthsTest {
+        @Test
+        fun `should get length of one column`() {
+            val input = """
+                123
+                 45
+                  6
+                *  
+            """.trimIndent()
+            val cols = getColumnLengths(input)
+            cols shouldBe listOf(3)
+        }
+
+        @Test
+        fun `should get length of multiple columns`() {
+            val input = """
+                123 328  5 6
+                 45 64  38 2
+                  6 98  21 3
+                *   +   *   +
+            """.trimIndent()
+            val cols = getColumnLengths(input)
+            cols shouldBe listOf(3, 3, 2, 1)
+        }
+
+    }
+
+    @Nested
+    inner class SolveProblemTest {
+        @Test
+        fun `solve problem with addition`() {
+            val problem = Problem(
+                numbers = listOf(1, 2, 3),
+                operator = "+",
+            )
+            val result = solveProblem(problem)
+            result shouldBe 6
+        }
+
+        @Test
+        fun `solve problem with multiplication`() {
+            val problem = Problem(
+                numbers = listOf(1, 2, 3, 4),
+                operator = "*",
+            )
+            val result = solveProblem(problem)
+            result shouldBe 24
+        }
+    }
+
+    @Nested
+    inner class ReadNumbersTest {
+        @Test
+        fun `read numbers with same number of digits as columns`() {
+            val numberStrings = listOf(
+                "123",
+                " 45",
+                "  6"
+            )
+            val numbers = readNumbers(numberStrings)
+            numbers shouldBe listOf(356, 24, 1)
+        }
+
+        @Test
+        fun `read numbers with different number of digits as columns`() {
+            val numberStrings = listOf(
+                "1123",
+                " 345",
+                "   6"
+            )
+            val numbers = readNumbers(numberStrings)
+            numbers shouldBe listOf(356, 24, 13, 1)
+        }
+    }
+}

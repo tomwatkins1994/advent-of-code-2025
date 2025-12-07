@@ -147,23 +147,23 @@ class MainTest {
     inner class ReadNumbersTest {
         @Test
         fun `read numbers with same number of digits as columns`() {
-            val rows = listOf(
+            val numberStrings = listOf(
                 "123",
                 " 45",
                 "  6"
             )
-            val numbers = readNumbers(rows)
+            val numbers = readNumbers(numberStrings)
             numbers shouldBe listOf(356, 24, 1)
         }
 
         @Test
         fun `read numbers with different number of digits as columns`() {
-            val rows = listOf(
+            val numberStrings = listOf(
                 "1123",
                 " 345",
                 "   6"
             )
-            val numbers = readNumbers(rows)
+            val numbers = readNumbers(numberStrings)
             numbers shouldBe listOf(356, 24, 13, 1)
         }
     }

@@ -88,3 +88,5 @@
       issues - wrong
     * Breaking every little issue into a new function with its own tests made this so much easier to work out and debug
     * Made pretty good use of the debug on this one
+    * Reversing the numbers made parsing them a lot easier
+    * Kotlin functional syntax made the code really nice to work with on this one

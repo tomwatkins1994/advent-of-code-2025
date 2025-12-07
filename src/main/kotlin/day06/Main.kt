@@ -18,22 +18,23 @@ data class Problem(
 )
 
 fun parseInput(input: String): List<Problem> {
-    val numbers: MutableList<List<String>> = mutableListOf()
+    val numberStrings: MutableList<List<String>> = mutableListOf()
     val operators: MutableList<String> = mutableListOf()
 
     val columnLengths = getColumnLengths(input)
 
-    for ((index, line) in input.lines().withIndex()) {
-        if (index == input.lines().size - 1) {
+    val lines = input.lines()
+    for ((index, line) in lines.withIndex()) {
+        if (index == lines.size - 1) {
             operators.addAll(line.split(Regex("\\s+")).filter { it.isNotBlank() })
         } else {
             var currentPosition = 0
-            numbers.add(columnLengths.map {
-                val overflow = (currentPosition + it) - line.length
-                val endPosition = if (overflow > 0) line.length else currentPosition + it
+            numberStrings.add(columnLengths.map { colLength ->
+                val overflow = (currentPosition + colLength) - line.length
+                val endPosition = if (overflow > 0) line.length else currentPosition + colLength
                 val number =
                     line.substring(currentPosition, endPosition) + if (overflow > 0) " ".repeat(overflow) else ""
-                currentPosition += it + 1
+                currentPosition += colLength + 1
                 number
             })
         }
@@ -41,7 +42,7 @@ fun parseInput(input: String): List<Problem> {
 
     return operators.mapIndexed { index, operator ->
         Problem(
-            numbers = readNumbers(numbers.map { it[index] }),
+            numbers = readNumbers(numberStrings.map { it[index] }),
             operator = operator
         )
     }
@@ -52,12 +53,11 @@ fun getColumnLengths(input: String): List<Int> {
         for ((lineIndex, line) in input.lines().withIndex()) {
             val values = line.split(Regex("\\s+")).filter { it.isNotBlank() }
             if (lineIndex == 0) addAll(MutableList(values.size) { 0 })
-            values.map { it.length }
-                .forEachIndexed { index, value ->
-                    if (value > get(index)) {
-                        set(index, value)
-                    }
+            values.map { it.length }.forEachIndexed { index, value ->
+                if (value > get(index)) {
+                    set(index, value)
                 }
+            }
         }
     }
 }
@@ -70,10 +70,10 @@ fun solveProblem(problem: Problem): Long {
     }
 }
 
-fun readNumbers(rows: List<String>): List<Int> {
-    val numbers = MutableList(rows.maxOf { it.length }) { "" }
-    for (row in rows.map { it.reversed() }) {
-        for ((charIndex, char) in row.withIndex()) {
+fun readNumbers(numberStrings: List<String>): List<Int> {
+    val numbers = MutableList(numberStrings.maxOf { it.length }) { "" }
+    for (numberString in numberStrings.map { it.reversed() }) {
+        for ((charIndex, char) in numberString.withIndex()) {
             if (char.isDigit()) numbers[charIndex] += char
         }
     }

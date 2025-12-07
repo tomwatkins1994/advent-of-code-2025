@@ -43,7 +43,7 @@ class MainTest {
                 *  
             """.trimIndent()
             val problems = parseInput(input)
-            problems.map { it.numbers } shouldBe listOf(listOf(123, 45, 6))
+            problems.map { it.numbers } shouldBe listOf(listOf(356, 24, 1))
         }
 
         @Test
@@ -96,6 +96,31 @@ class MainTest {
             )
             val result = solveProblem(problem)
             result shouldBe 24
+        }
+    }
+
+    @Nested
+    inner class ReadNumbersTest {
+        @Test
+        fun `read numbers with same number of digits as columns`() {
+            val rows = listOf(
+                "123",
+                " 45",
+                "  6"
+            )
+            val numbers = readNumbers(rows)
+            numbers shouldBe listOf(356, 24, 1)
+        }
+
+        @Test
+        fun `read numbers with different number of digits as columns`() {
+            val rows = listOf(
+                "1123",
+                " 345",
+                "   6"
+            )
+            val numbers = readNumbers(rows)
+            numbers shouldBe listOf(356, 24, 13, 1)
         }
     }
 }

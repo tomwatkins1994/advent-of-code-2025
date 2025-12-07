@@ -13,9 +13,14 @@ fun getStartingPosition(input: String): Int {
 }
 
 fun drawBeam(line: String, positions: List<Int>): String {
-    var newLine = line
+    val newLine = line.map { it.toString() }.toMutableList()
     positions.forEach {
-        newLine = newLine.replaceRange(it..it, "|")
+        if (newLine[it] == "^") {
+            newLine[it - 1] = "|"
+            newLine[it + 1] = "|"
+        } else {
+            newLine[it] = "|"
+        }
     }
-    return newLine
+    return newLine.joinToString("")
 }

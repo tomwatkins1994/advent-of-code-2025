@@ -56,5 +56,19 @@ class MainTest {
             val newBeam = drawBeam(line, listOf(3, 9))
             newBeam shouldBe "...|.....|....."
         }
+
+        @Test
+        fun `draw beam with a splitter`() {
+            val line = ".......^......."
+            val newBeam = drawBeam(line, listOf(7))
+            newBeam shouldBe "......|^|......"
+        }
+
+        @Test
+        fun `draw 2 beam with 2 splitters next to each other`() {
+            val line = ".......^.^....."
+            val newBeam = drawBeam(line, listOf(7, 9))
+            newBeam shouldBe "......|^|^|...."
+        }
     }
 }

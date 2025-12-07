@@ -16,7 +16,7 @@ class MainTest {
                 *   +   *   +  
             """.trimIndent()
             val answer = getAnswer(input)
-            answer shouldBe 4277556
+            answer shouldBe 3263827
         }
     }
 

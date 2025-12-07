@@ -46,16 +46,16 @@ class MainTest {
             problems.map { it.numbers } shouldBe listOf(123, 45, 6)
         }
 
-//        @Test
-//        fun `should get operator from more than one column`() {
-//            val input = """
-//                123 328  51 64
-//                 45 64  387 23
-//                  6 98  215 314
-//                *   +   *   +
-//            """.trimIndent()
-//            val problems = parseInput(input)
-//            problems.map { it.operator } shouldBe listOf("*", "+", "*", "+")
-//        }
+        @Test
+        fun `should get operator from more than one column`() {
+            val input = """
+                123 328  51 64
+                 45 64  387 23
+                  6 98  215 314
+                *   +   *   +
+            """.trimIndent()
+            val problems = parseInput(input)
+            problems.map { it.operator } shouldBe listOf("*", "+", "*", "+")
+        }
     }
 }

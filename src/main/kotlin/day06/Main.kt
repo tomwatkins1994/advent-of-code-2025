@@ -14,5 +14,11 @@ data class Problem(
 )
 
 fun parseInput(input: String): List<Problem> {
+    val operators: MutableList<String> = mutableListOf()
+    for ((index, value) in input.lines().withIndex()) {
+        if (index == input.length - 1) {
+            operators.addAll(value.split(Regex("\\s+")))
+        }
+    }
     return listOf(Problem(numbers = listOf(123, 45, 6), operator = "*"))
 }

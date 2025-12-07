@@ -74,6 +74,22 @@ class MainTest {
                 listOf(4, 431, 623),
             )
         }
+
+        @Test
+        fun `should handle issue with last number not having padding`() {
+            val input = """
+                  6 98  215 314
+                123 328  51 64
+                *   +   *   +
+            """.trimIndent()
+            val problems = parseInput(input)
+            problems.map { it.numbers } shouldBe listOf(
+                listOf(63, 2, 1),
+                listOf(8, 82, 93),
+                listOf(51, 15, 2),
+                listOf(4, 14, 36),
+            )
+        }
     }
 
     @Nested

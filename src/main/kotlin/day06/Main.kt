@@ -29,7 +29,10 @@ fun parseInput(input: String): List<Problem> {
         } else {
             var currentPosition = 0
             numbers.add(columnLengths.map {
-                val number = line.substring(currentPosition, currentPosition + it)
+                val overflow = (currentPosition + it) - line.length
+                val endPosition = if (overflow > 0) line.length else currentPosition + it
+                val number =
+                    line.substring(currentPosition, endPosition) + if (overflow > 0) " ".repeat(overflow) else ""
                 currentPosition += it + 1
                 number
             })

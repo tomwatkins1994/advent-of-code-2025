@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class MainTest {
     @Nested
-    inner class GetNumberOfSplitsTest {
+    inner class GetTotalNumberOfSplitsTest {
         @Test
         fun `acceptance test based on known input and output`() {
             val input = """
@@ -27,7 +27,7 @@ class MainTest {
                 .^.^.^.^.^...^.
                 ...............
             """.trimIndent()
-            val numberOfSplits = getNumberOfSplits(input)
+            val numberOfSplits = getTotalNumberOfSplits(input)
             numberOfSplits shouldBe 21
         }
     }
@@ -53,6 +53,23 @@ class MainTest {
             val line = ".......|.|....."
             val positions = getBeamPositions(line)
             positions shouldBe listOf(7, 9)
+        }
+    }
+
+    @Nested
+    inner class GetNumberOfSplitsTest {
+        @Test
+        fun `get single split`() {
+            val line = "......|^|......"
+            val positions = getNumberOfSplits(line)
+            positions shouldBe 1
+        }
+
+        @Test
+        fun `get multiple splits`() {
+            val line = "......|^|.|^|.."
+            val positions = getNumberOfSplits(line)
+            positions shouldBe 2
         }
     }
 

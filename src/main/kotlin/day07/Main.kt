@@ -4,16 +4,24 @@ fun main() {
 
 }
 
-fun getNumberOfSplits(input: String): Int {
-//    val startingPosition = getStartingPosition(input)
-//    for (line in input.lines().drop(1)) {
-//        drawBeam(line)
-//    }
-    return 0
+fun getTotalNumberOfSplits(input: String): Int {
+    var positions = listOf<Int>()
+    var numberOfSplits = 0
+    for (line in input.lines()) {
+        val newLine = drawBeam(line, positions)
+        positions = getBeamPositions(newLine)
+        numberOfSplits += getNumberOfSplits(newLine)
+    }
+
+    return numberOfSplits
 }
 
 fun getBeamPositions(line: String): List<Int> {
     return line.mapIndexedNotNull { index, elem -> index.takeIf { elem == 'S' || elem == '|' } }
+}
+
+fun getNumberOfSplits(line: String): Int {
+    return Regex(Regex.escape("|^|")).findAll(line).count()
 }
 
 fun drawBeam(line: String, positions: List<Int>): String {

@@ -21,29 +21,26 @@ fun getTotalNumberOfSplits(input: String): Int {
 }
 
 fun getTotalNumberOfTimelines(input: String): Int {
-    var totalPossibleTimelines = 0
-    var positions = listOf<Int>()
     val lines = input.lines()
-    for ((lineIndex, line) in input.lines().withIndex()) {
-        if (lineIndex == 0) {
-            positions = getBeamPositions(line)
-        } else {
-            totalPossibleTimelines += getPossibleTimelinesFromLine(lines.subList(lineIndex, lines.size - 1), positions)
-        }
-    }
+    val positions = getBeamPositions(input.lines().first())
 
-    return totalPossibleTimelines
+    return getPossibleTimelinesFromLine(lines.subList(1, lines.size), positions)
 }
 
 fun getPossibleTimelinesFromLine(lines: List<String>, positions: List<Int>): Int {
+    if (lines.isEmpty()) {
+        return 0
+    }
+    
     var possibleTimelines = 0
-    for ((lineIndex, line) in lines.withIndex()) {
-        val timelines = getPossibleTimelinesForLine(line, positions)
-        possibleTimelines += timelines.size
-        timelines.forEach {
-            val newPositions = getBeamPositions(it)
-            possibleTimelines += getPossibleTimelinesFromLine(lines.subList(lineIndex, lines.size - 1), newPositions)
-        }
+    val timelines = getPossibleTimelinesForLine(lines.first(), positions)
+    possibleTimelines += timelines.size
+    timelines.forEach {
+        val newPositions = getBeamPositions(it)
+        possibleTimelines += getPossibleTimelinesFromLine(
+            lines.subList(1, lines.size),
+            newPositions
+        )
     }
 
     return possibleTimelines

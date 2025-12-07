@@ -75,7 +75,35 @@ class MainTest {
             )
         }
     }
-    
+
+    @Nested
+    inner class GetColumnLengthsTest {
+        @Test
+        fun `should get length of one column`() {
+            val input = """
+                123
+                 45
+                  6
+                *  
+            """.trimIndent()
+            val cols = getColumnLengths(input)
+            cols shouldBe listOf(3)
+        }
+
+        @Test
+        fun `should get length of multiple columns`() {
+            val input = """
+                123 328  5 6
+                 45 64  38 2
+                  6 98  21 3
+                *   +   *   +
+            """.trimIndent()
+            val cols = getColumnLengths(input)
+            cols shouldBe listOf(3, 3, 2, 1)
+        }
+
+    }
+
     @Nested
     inner class SolveProblemTest {
         @Test

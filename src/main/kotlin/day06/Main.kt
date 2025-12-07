@@ -52,6 +52,21 @@ fun parseInput(input: String): List<Problem> {
     }
 }
 
+fun getColumnLengths(input: String): List<Int> {
+    return buildList {
+        for ((lineIndex, line) in input.lines().withIndex()) {
+            val values = line.split(Regex("\\s+")).filter { it.isNotBlank() }
+            if (lineIndex == 0) addAll(MutableList(values.size) { 0 })
+            values.map { it.length }
+                .forEachIndexed { index, value ->
+                    if (value > get(index)) {
+                        set(index, value)
+                    }
+                }
+        }
+    }
+}
+
 fun solveProblem(problem: Problem): Long {
     return when (problem.operator) {
         "+" -> problem.numbers.map { it.toLong() }.reduce { acc, i -> acc + i }

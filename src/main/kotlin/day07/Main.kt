@@ -24,10 +24,12 @@ fun getTotalNumberOfSplits(input: String): Int {
 }
 
 fun getTotalNumberOfTimelines(input: String): Long {
+    val lines = input.lines()
     val timelinesCache = mutableMapOf<Pair<Int, List<Int>>, Long>()
 
-    fun getPossibleTimelinesFromLine(lineIndex: Int, lines: List<String>, positions: List<Int>): Long {
-        if (lines.isEmpty()) {
+    fun getPossibleTimelinesFromLine(lineIndex: Int, positions: List<Int>): Long {
+        val newLines = lines.subList(lineIndex, lines.size)
+        if (newLines.isEmpty()) {
             return 0
         }
 
@@ -36,11 +38,10 @@ fun getTotalNumberOfTimelines(input: String): Long {
             return timelinesCache[cacheKey]!!
         }
 
-        val timelines = getPossibleTimelinesForLine(lines.first(), positions)
+        val timelines = getPossibleTimelinesForLine(newLines.first(), positions)
         val result = (timelines.size - 1) + timelines.sumOf {
             getPossibleTimelinesFromLine(
                 lineIndex + 1,
-                lines.subList(1, lines.size),
                 getBeamPositions(it)
             )
         }
@@ -49,10 +50,10 @@ fun getTotalNumberOfTimelines(input: String): Long {
         return result
     }
 
-    val lines = input.lines()
-    val positions = getBeamPositions(input.lines().first())
-
-    return 1 + getPossibleTimelinesFromLine(0, lines.subList(1, lines.size), positions)
+    return 1 + getPossibleTimelinesFromLine(
+        0,
+        getBeamPositions(lines.first())
+    )
 }
 
 fun getBeamPositions(line: String): List<Int> {

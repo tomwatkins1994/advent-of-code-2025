@@ -106,4 +106,6 @@
     * After a while trying to debug the issue, not getting very far. Hard to know where I have gone wrong because I
       cannot manually calculate it and debugging a recursive function is quite difficult
     * I know there is an actual algo for this, but I couldn't remember it, the recursive way is definitely a dumpster
-      fire of a method which doesn't at all scale 
+      fire of a method which doesn't at all scale
+    * I tried to improve the recursion by memoising results, after doing this my tests still passed and my answer now
+      calculates. Wrongly though

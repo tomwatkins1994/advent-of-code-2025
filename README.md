@@ -103,3 +103,5 @@
       helped by it being a late night when I did this one
     * Made the mistake of adding all timelines together **not** just alternative ones, so my number was higher for a bit
     * Got the acceptance test passing but the answer is not coming out, some kind of endless recursion I would presume
+    * After a while trying to debug the issue, not getting very far. Hard to know where I have gone wrong because I
+      cannot manually calculate it and debugging a recursive function is quite difficult

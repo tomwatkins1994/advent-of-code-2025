@@ -3,8 +3,11 @@ package day07
 import java.io.File
 
 fun main() {
-    val answer = getTotalNumberOfSplits(File("src/main/kotlin/day07/input.txt").readText())
-    println("Total splits: $answer")
+    val totalSplits = getTotalNumberOfSplits(File("src/main/kotlin/day07/input.txt").readText())
+    println("Total splits: $totalSplits")
+
+    val totalTimelines = getTotalNumberOfTimelines(File("src/main/kotlin/day07/input.txt").readText())
+    println("Total timelines: $totalTimelines")
 }
 
 fun getTotalNumberOfSplits(input: String): Int {

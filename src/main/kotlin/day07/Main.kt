@@ -6,7 +6,7 @@ fun main() {
     val totalSplits = getTotalNumberOfSplits(File("src/main/kotlin/day07/input.txt").readText())
     println("Total splits: $totalSplits")
 
-    val totalTimelines = getTotalNumberOfTimelines(File("src/main/kotlin/day07/input2.txt").readText())
+    val totalTimelines = getTotalNumberOfTimelines(File("src/main/kotlin/day07/input.txt").readText())
     println("Total timelines: $totalTimelines")
 }
 
@@ -32,9 +32,10 @@ fun getTotalNumberOfTimelines(input: String): Int {
             return 0
         }
 
-        if (timelinesMap.containsKey(Pair(lineIndex, positions))) {
+        val cacheKey = Pair(lineIndex, positions)
+        if (timelinesMap.containsKey(cacheKey)) {
             println("Memo hit")
-            return timelinesMap[Pair(lineIndex, positions)]!!
+            return timelinesMap[cacheKey]!!
         }
 
         cnt++
@@ -48,7 +49,7 @@ fun getTotalNumberOfTimelines(input: String): Int {
                 getBeamPositions(it)
             )
         }
-        timelinesMap[Pair(lineIndex, positions)] = result
+        timelinesMap[cacheKey] = result
 
         return result
     }

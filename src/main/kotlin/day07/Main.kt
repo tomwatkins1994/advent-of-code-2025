@@ -6,7 +6,7 @@ fun main() {
     val totalSplits = getTotalNumberOfSplits(File("src/main/kotlin/day07/input.txt").readText())
     println("Total splits: $totalSplits")
 
-    val totalTimelines = getTotalNumberOfTimelines2(File("src/main/kotlin/day07/input2.txt").readText())
+    val totalTimelines = getTotalNumberOfTimelines(File("src/main/kotlin/day07/input2.txt").readText())
     println("Total timelines: $totalTimelines")
 }
 
@@ -62,7 +62,12 @@ fun getTotalNumberOfTimelines2(input: String): Int {
     return timelines
 }
 
+var cnt = 0
+
 fun getPossibleTimelinesFromLine(lines: List<String>, positions: List<Int>): Int {
+//    sleep(100)
+    cnt++
+    println(cnt)
     if (lines.isEmpty()) {
         return 0
     }
@@ -70,15 +75,13 @@ fun getPossibleTimelinesFromLine(lines: List<String>, positions: List<Int>): Int
     var possibleTimelines = 0
     val timelines = getPossibleTimelinesForLine(lines.first(), positions)
     possibleTimelines += (timelines.size - 1)
-    timelines.forEach {
-        val newPositions = getBeamPositions(it)
-        possibleTimelines += getPossibleTimelinesFromLine(
+    possibleTimelines += timelines.sumOf {
+        getPossibleTimelinesFromLine(
             lines.subList(1, lines.size),
-            newPositions
+            getBeamPositions(it)
         )
     }
 
-//    println("Possible timelines from line ${142 - lines.size}: $possibleTimelines")
     return possibleTimelines
 }
 

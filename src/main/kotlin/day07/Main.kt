@@ -10,6 +10,12 @@ fun main() {
     println("Total timelines: $totalTimelines")
 }
 
+fun getBeamPositions(line: String): List<Int> {
+    return line.mapIndexedNotNull { index, elem -> index.takeIf { elem == 'S' || elem == '|' } }
+}
+
+// Part 1
+
 fun getTotalNumberOfSplits(input: String): Int {
     var positions = listOf<Int>()
     var numberOfSplits = 0
@@ -22,6 +28,25 @@ fun getTotalNumberOfSplits(input: String): Int {
 
     return numberOfSplits
 }
+
+fun getSplitPositions(line: String): List<Int> {
+    return line.mapIndexedNotNull { index, elem -> index.takeIf { elem == '^' } }
+}
+
+fun drawBeam(line: String, positions: List<Int>): String {
+    val newLine = line.map { it.toString() }.toMutableList()
+    positions.forEach {
+        if (newLine[it] == "^") {
+            newLine[it - 1] = "|"
+            newLine[it + 1] = "|"
+        } else {
+            newLine[it] = "|"
+        }
+    }
+    return newLine.joinToString("")
+}
+
+// Part 2
 
 fun getTotalNumberOfTimelines(input: String): Long {
     val lines = input.lines()
@@ -54,27 +79,6 @@ fun getTotalNumberOfTimelines(input: String): Long {
         0,
         getBeamPositions(lines.first())
     )
-}
-
-fun getBeamPositions(line: String): List<Int> {
-    return line.mapIndexedNotNull { index, elem -> index.takeIf { elem == 'S' || elem == '|' } }
-}
-
-fun getSplitPositions(line: String): List<Int> {
-    return line.mapIndexedNotNull { index, elem -> index.takeIf { elem == '^' } }
-}
-
-fun drawBeam(line: String, positions: List<Int>): String {
-    val newLine = line.map { it.toString() }.toMutableList()
-    positions.forEach {
-        if (newLine[it] == "^") {
-            newLine[it - 1] = "|"
-            newLine[it + 1] = "|"
-        } else {
-            newLine[it] = "|"
-        }
-    }
-    return newLine.joinToString("")
 }
 
 fun getPossibleTimelinesForLine(line: String, positions: List<Int>): List<String> {

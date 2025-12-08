@@ -24,7 +24,7 @@ fun getTotalNumberOfSplits(input: String): Int {
 }
 
 fun getTotalNumberOfTimelines(input: String): Long {
-    val timelinesMap = mutableMapOf<Pair<Int, List<Int>>, Long>()
+    val timelinesCache = mutableMapOf<Pair<Int, List<Int>>, Long>()
 
     fun getPossibleTimelinesFromLine(lineIndex: Int, lines: List<String>, positions: List<Int>): Long {
         if (lines.isEmpty()) {
@@ -32,9 +32,9 @@ fun getTotalNumberOfTimelines(input: String): Long {
         }
 
         val cacheKey = Pair(lineIndex, positions)
-        if (timelinesMap.containsKey(cacheKey)) {
+        if (timelinesCache.containsKey(cacheKey)) {
             println("Memo hit")
-            return timelinesMap[cacheKey]!!
+            return timelinesCache[cacheKey]!!
         }
 
         val timelines = getPossibleTimelinesForLine(lines.first(), positions)
@@ -45,7 +45,7 @@ fun getTotalNumberOfTimelines(input: String): Long {
                 getBeamPositions(it)
             )
         }
-        timelinesMap[cacheKey] = result
+        timelinesCache[cacheKey] = result
 
         return result
     }

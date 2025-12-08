@@ -107,5 +107,9 @@
       cannot manually calculate it and debugging a recursive function is quite difficult
     * I know there is an actual algo for this, but I couldn't remember it, the recursive way is definitely a dumpster
       fire of a method which doesn't at all scale
-    * I tried to improve the recursion by memoising results, after doing this my tests still passed and my answer now
-      calculates. Wrongly though
+    * I lost the will to live so looked up the algo, felt sad whilst implementing it though so went back to trying to
+      brute force my recursive method into working
+    * It occurred to me that a lot of the path checking being done is repeated if a path intersects another one.
+      Memoising the results of the `getPossibleTimelinesFromLine()` resulted in it completing pretty much instantly and
+      got the right answer. So the logic was sound, just a huge amount of wasted work which collapsed at scale.
+    * Recursion is definitely still not an optimal solution here, will aim to actually remember the algo next time.

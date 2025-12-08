@@ -90,3 +90,26 @@
     * Made pretty good use of the debug on this one
     * Reversing the numbers made parsing them a lot easier
     * Kotlin functional syntax made the code really nice to work with on this one
+
+## Day 07
+
+* **Part 1** - One of the more challenging part 1's but the most enjoyable so far for some reason
+    * I nearly pivoted to OOP at one point to track the splits but tracking an intersection popped into my head just as
+      I was getting into that, so I scrapped it
+    * Wasted some time on trying to use regexes to track split beams which was unwise - also misread the brief so
+      tracked the splits instead of the times a beam was split
+* **Part 2** - Trickiest puzzle so far but my favourite nonetheless
+    * Felt like recursion was definitely the way to go again but was tricky to work out exactly where to put this - not
+      helped by it being a late night when I did this one
+    * Made the mistake of adding all timelines together **not** just alternative ones, so my number was higher for a bit
+    * Got the acceptance test passing but the answer is not coming out, some kind of endless recursion I would presume
+    * After a while trying to debug the issue, not getting very far. Hard to know where I have gone wrong because I
+      cannot manually calculate it and debugging a recursive function is quite difficult
+    * I know there is an actual algo for this, but I couldn't remember it, the recursive way is definitely a dumpster
+      fire of a method which doesn't at all scale
+    * I lost the will to live so looked up the algo, felt sad whilst implementing it though so went back to trying to
+      brute force my recursive method into working
+    * It occurred to me that a lot of the path checking being done is repeated if a path intersects another one.
+      Memoising the results of the `getPossibleTimelinesFromLine()` resulted in it completing pretty much instantly and
+      got the right answer. So the logic was sound, just a huge amount of wasted work which collapsed at scale.
+    * Recursion is definitely still not an optimal solution here, will aim to actually remember the algo next time.

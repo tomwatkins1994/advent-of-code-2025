@@ -57,6 +57,18 @@ class MainTest {
             val numberOfSplits = getTotalNumberOfTimelines(input)
             numberOfSplits shouldBe 40
         }
+
+        @Test
+        fun `should result in 2 timelines`() {
+            val input = """
+                .......S.......
+                ...............
+                .......^.......
+                ...............
+            """.trimIndent()
+            val numberOfSplits = getTotalNumberOfTimelines(input)
+            numberOfSplits shouldBe 2
+        }
     }
 
     @Nested

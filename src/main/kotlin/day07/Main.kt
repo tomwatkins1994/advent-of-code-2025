@@ -4,7 +4,7 @@ import java.io.File
 
 fun main() {
     val answer = getTotalNumberOfSplits(File("src/main/kotlin/day07/input.txt").readText())
-    println("Answer: $answer")
+    println("Total splits: $answer")
 }
 
 fun getTotalNumberOfSplits(input: String): Int {
@@ -24,17 +24,17 @@ fun getTotalNumberOfTimelines(input: String): Int {
     val lines = input.lines()
     val positions = getBeamPositions(input.lines().first())
 
-    return getPossibleTimelinesFromLine(lines.subList(1, lines.size), positions)
+    return 1 + getPossibleTimelinesFromLine(lines.subList(1, lines.size), positions)
 }
 
 fun getPossibleTimelinesFromLine(lines: List<String>, positions: List<Int>): Int {
     if (lines.isEmpty()) {
         return 0
     }
-    
+
     var possibleTimelines = 0
     val timelines = getPossibleTimelinesForLine(lines.first(), positions)
-    possibleTimelines += timelines.size
+    possibleTimelines += (timelines.size - 1)
     timelines.forEach {
         val newPositions = getBeamPositions(it)
         possibleTimelines += getPossibleTimelinesFromLine(

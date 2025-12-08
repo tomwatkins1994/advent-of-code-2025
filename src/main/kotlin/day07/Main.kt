@@ -71,18 +71,14 @@ fun getPossibleTimelinesFromLine(lines: List<String>, positions: List<Int>): Int
     if (lines.isEmpty()) {
         return 0
     }
-
-    var possibleTimelines = 0
+    
     val timelines = getPossibleTimelinesForLine(lines.first(), positions)
-    possibleTimelines += (timelines.size - 1)
-    possibleTimelines += timelines.sumOf {
+    return (timelines.size - 1) + timelines.sumOf {
         getPossibleTimelinesFromLine(
             lines.subList(1, lines.size),
             getBeamPositions(it)
         )
     }
-
-    return possibleTimelines
 }
 
 fun getBeamPositions(line: String): List<Int> {

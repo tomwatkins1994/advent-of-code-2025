@@ -95,6 +95,11 @@
 
 * **Part 1** - One of the more challenging part 1's but the most enjoyable so far for some reason
     * I nearly pivoted to OOP at one point to track the splits but tracking an intersection popped into my head just as
-      I was getting into that so I scrapped it
+      I was getting into that, so I scrapped it
     * Wasted some time on trying to use regexes to track split beams which was unwise - also misread the brief so
       tracked the splits instead of the times a beam was split
+* **Part 2** - Trickiest puzzle so far but my favourite nonetheless
+    * Felt like recursion was definitely the way to go again but was tricky to work out exactly where to put this - not
+      helped by it being a late night when I did this one
+    * Made the mistake of adding all timelines together **not** just alternative ones, so my number was higher for a bit
+    * Got the acceptance test passing but the answer is not coming out, some kind of endless recursion I would presume

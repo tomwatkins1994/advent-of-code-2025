@@ -6,7 +6,7 @@ fun main() {
     val totalSplits = getTotalNumberOfSplits(File("src/main/kotlin/day07/input.txt").readText())
     println("Total splits: $totalSplits")
 
-    val totalTimelines = getTotalNumberOfTimelines(File("src/main/kotlin/day07/input.txt").readText())
+    val totalTimelines = getTotalNumberOfTimelines2(File("src/main/kotlin/day07/input2.txt").readText())
     println("Total timelines: $totalTimelines")
 }
 
@@ -30,6 +30,38 @@ fun getTotalNumberOfTimelines(input: String): Int {
     return 1 + getPossibleTimelinesFromLine(lines.subList(1, lines.size), positions)
 }
 
+fun getTotalNumberOfTimelines2(input: String): Int {
+    var positions = listOf<Int>()
+    var timelines = 1
+    var splits = 0
+    for (line in input.lines()) {
+        val newLine = drawBeam(line, positions)
+        val newPositions = getBeamPositions(newLine)
+
+        if (newPositions.size > positions.size && positions.size > 0) {
+
+
+            val splitPositions = getSplitPositions(line)
+            val numberOfSplits = splitPositions.intersect(positions).count()
+            splits++
+            timelines += (newPositions.size - 1) * splits
+
+        }
+//
+//            val splitPositions = getSplitPositions(line)
+//            val numberOfSplits = splitPositions.intersect(positions).count()
+//
+//            splits++
+//            timelines += (splits * numberOfSplits) - (numberOfSplits - 1)
+//
+//            //getBeamPositions(newLine).count { !positions.contains(it) } - 1
+//        }
+        positions = newPositions
+    }
+
+    return timelines
+}
+
 fun getPossibleTimelinesFromLine(lines: List<String>, positions: List<Int>): Int {
     if (lines.isEmpty()) {
         return 0
@@ -46,6 +78,7 @@ fun getPossibleTimelinesFromLine(lines: List<String>, positions: List<Int>): Int
         )
     }
 
+//    println("Possible timelines from line ${142 - lines.size}: $possibleTimelines")
     return possibleTimelines
 }
 

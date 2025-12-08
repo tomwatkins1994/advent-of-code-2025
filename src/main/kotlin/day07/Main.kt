@@ -23,11 +23,10 @@ fun getTotalNumberOfSplits(input: String): Int {
     return numberOfSplits
 }
 
-fun getTotalNumberOfTimelines(input: String): Int {
-    var cnt = 0
-    val timelinesMap = mutableMapOf<Pair<Int, List<Int>>, Int>()
+fun getTotalNumberOfTimelines(input: String): Long {
+    val timelinesMap = mutableMapOf<Pair<Int, List<Int>>, Long>()
 
-    fun getPossibleTimelinesFromLine(lineIndex: Int, lines: List<String>, positions: List<Int>): Int {
+    fun getPossibleTimelinesFromLine(lineIndex: Int, lines: List<String>, positions: List<Int>): Long {
         if (lines.isEmpty()) {
             return 0
         }
@@ -37,9 +36,6 @@ fun getTotalNumberOfTimelines(input: String): Int {
             println("Memo hit")
             return timelinesMap[cacheKey]!!
         }
-
-        cnt++
-        println(cnt)
 
         val timelines = getPossibleTimelinesForLine(lines.first(), positions)
         val result = (timelines.size - 1) + timelines.sumOf {
@@ -58,28 +54,6 @@ fun getTotalNumberOfTimelines(input: String): Int {
     val positions = getBeamPositions(input.lines().first())
 
     return 1 + getPossibleTimelinesFromLine(0, lines.subList(1, lines.size), positions)
-}
-
-fun getTotalNumberOfTimelines2(input: String): Int {
-    var positions = listOf<Int>()
-    var timelines = 1
-    var splits = 0
-    for (line in input.lines()) {
-        val newLine = drawBeam(line, positions)
-        val newPositions = getBeamPositions(newLine)
-//
-//            val splitPositions = getSplitPositions(line)
-//            val numberOfSplits = splitPositions.intersect(positions).count()
-//
-//            splits++
-//            timelines += (splits * numberOfSplits) - (numberOfSplits - 1)
-//
-//            //getBeamPositions(newLine).count { !positions.contains(it) } - 1
-//        }
-        positions = newPositions
-    }
-
-    return timelines
 }
 
 fun getBeamPositions(line: String): List<Int> {
@@ -115,21 +89,3 @@ fun getPossibleTimelinesForLine(line: String, positions: List<Int>): List<String
         }
     }
 }
-
-data class BeamPosition(val index: Int, val value: Int)
-
-//fun getLineWithValues(line: String, positions: List<BeamPosition>): String {
-//    val newLine = line.map { it.toString() }.toMutableList()
-//    positions.forEach { (index, value) ->
-//        if (newLine[index] == "^") {
-//            newLine[index - 1][0].takeIf { it.isDigit() }?.let {
-//                it
-//            }
-//            newLine[index - 1] = (newLine[index - 1][0] + value).toString()
-//            newLine[index + 1] = (newLine[index + 1].toInt() + value).toString()
-//        } else {
-//            newLine[index] = value.toString()
-//        }
-//    }
-//    return newLine.joinToString("")
-//}

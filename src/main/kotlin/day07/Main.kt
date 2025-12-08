@@ -33,7 +33,6 @@ fun getTotalNumberOfTimelines(input: String): Long {
 
         val cacheKey = Pair(lineIndex, positions)
         if (timelinesCache.containsKey(cacheKey)) {
-            println("Memo hit")
             return timelinesCache[cacheKey]!!
         }
 

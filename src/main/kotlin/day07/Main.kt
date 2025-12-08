@@ -71,7 +71,7 @@ fun getPossibleTimelinesFromLine(lines: List<String>, positions: List<Int>): Int
     if (lines.isEmpty()) {
         return 0
     }
-    
+
     val timelines = getPossibleTimelinesForLine(lines.first(), positions)
     return (timelines.size - 1) + timelines.sumOf {
         getPossibleTimelinesFromLine(

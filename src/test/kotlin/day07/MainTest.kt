@@ -215,4 +215,34 @@ class MainTest {
             newBeam shouldBe listOf("......|^.......", ".......^|......")
         }
     }
+
+//    @Nested
+//    inner class GetLineWithValuesTest {
+//        @Test
+//        fun `get single value`() {
+//            val line = "..........."
+//            val lineWithValues = getLineWithValues(line, listOf(BeamPosition(index = 7, value = 1)))
+//            lineWithValues shouldBe ".......1..."
+//        }
+//
+//        @Test
+//        fun `get values when split`() {
+//            val line = ".......^..."
+//            val lineWithValues = getLineWithValues(line, listOf(BeamPosition(index = 7, value = 1)))
+//            lineWithValues shouldBe "......1^1.."
+//        }
+//
+//        @Test
+//        fun `get values when merging`() {
+//            val line = ".....^.^..."
+//            val lineWithValues = getLineWithValues(
+//                line,
+//                listOf(
+//                    BeamPosition(index = 5, value = 1),
+//                    BeamPosition(index = 7, value = 1)
+//                )
+//            )
+//            lineWithValues shouldBe "....1^2^1.."
+//        }
+//    }
 }
